@@ -81,20 +81,34 @@ export const appointmentColumns = [
   {
     header: "ACTIONS",
     accessorKey: "actions",
-    cell: ({ row }) => {
-      const navigate = useNavigate();
+    cell: ({ row, logics, navigate }) => {
       return (
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-blue-600 hover:text-blue-700 gap-1"
-          onClick={() =>
-            navigate(`/document-verification?applicant_id=${row.id}`)
-          }
-        >
-          <Eye className="h-4 w-4" />
-          <span className="text-xs">View Details</span>
-        </Button>
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 gap-1 h-8 px-2"
+            onClick={() =>
+              navigate
+                ? navigate(`/document-verification?applicant_id=${row.id}`)
+                : window.location.assign(`/document-verification?applicant_id=${row.id}`)
+            }
+          >
+            <Eye className="h-3.5 w-3.5" />
+            <span className="text-xs">View</span>
+          </Button>
+
+          {logics?.handleEdit && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 gap-1 h-8 px-2"
+              onClick={() => logics.handleEdit(row)}
+            >
+              <span className="text-xs font-medium">Edit</span>
+            </Button>
+          )}
+        </div>
       );
     },
   },

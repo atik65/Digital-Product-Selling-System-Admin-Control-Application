@@ -34,15 +34,48 @@ const useTable = ({ filter, api, apiCacheKey, staleTime }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParamsSyncParams]);
 
-  // here commented out real api data and used mock data for demo purpose -- remove mock data and uncomment real api data when integrating with real api
+  // Filter mock data when demo mock is active
+  const filteredMockData = appointmentMockData.filter((item) => {
+    if (filter?.search) {
+      const q = filter.search.toLowerCase();
+      const name = `${item.user?.first_name} ${item.user?.last_name}`.toLowerCase();
+      const email = (item.user?.email || "").toLowerCase();
+      const id = (item.id || "").toLowerCase();
+      const category = (item.document_category?.name || "").toLowerCase();
+      if (!name.includes(q) && !email.includes(q) && !id.includes(q) && !category.includes(q)) {
+        return false;
+      }
+    }
+    if (filter?.status && filter.status !== "" && filter.status !== "all") {
+      if (item.status?.toUpperCase() !== filter.status?.toUpperCase()) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  const totalMock = filteredMockData.length;
+  const lastPageMock = Math.ceil(totalMock / Number(per_page)) || 1;
+  const fromMock = totalMock === 0 ? 0 : (Number(page) - 1) * Number(per_page) + 1;
+  const toMock = Math.min(Number(page) * Number(per_page), totalMock);
+  const pagedMockData = filteredMockData.slice(
+    (Number(page) - 1) * Number(per_page),
+    Number(page) * Number(per_page)
+  );
 
   const tableInfo = {
     // data: data?.data ?? [],
-    data: { data: appointmentMockData },
+    data: { data: pagedMockData },
     pagination: {
       ...data?.data?.pagination,
       page: Number(page),
       per_page: Number(per_page),
+      total: totalMock,
+      last_page: lastPageMock,
+      from: fromMock,
+      to: toMock,
+      prev_page: Number(page) > 1 ? Number(page) - 1 : null,
+      next_page: Number(page) < lastPageMock ? Number(page) + 1 : null,
     },
     routerSyncParams,
     handleRowSelect,

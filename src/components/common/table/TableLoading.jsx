@@ -3,32 +3,45 @@ import TableSkeleton from "../TableSkeleton";
 
 export default function TableLoading({
   columnCount,
-  rowCount = 10,
+  rowCount = 6,
   showPagination = true,
 }) {
   return (
-    <div className="w-full space-y-3 overflow-auto">
-      <TableSkeleton columnCount={columnCount} rowCount={rowCount} />
-      {showPagination && (
-        <div className="flex gap-4 justify-between">
-          <Skeleton className="h-8 w-32" />
+    <div className="w-full space-y-4">
+      {/* Desktop Skeleton */}
+      <div className="hidden md:block w-full overflow-auto">
+        <TableSkeleton columnCount={columnCount} rowCount={rowCount} />
+      </div>
 
-          <div className="flex w-full flex-col items-center justify-between gap-4 overflow-auto px-2 py-1 sm:flex-row sm:gap-8">
-            <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8 ml-auto">
-              <div className="flex items-center space-x-2">
-                <Skeleton className="h-8 w-24" />
-                <Skeleton className="h-8 w-[70px]" />
+      {/* Mobile Card Skeletons */}
+      <div className="block md:hidden space-y-3">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="bg-white rounded-xl border p-4 shadow-xs space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-10 w-10 rounded-full" />
+                <div className="space-y-1.5">
+                  <Skeleton className="h-4 w-28" />
+                  <Skeleton className="h-3 w-36" />
+                </div>
               </div>
-              <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-                <Skeleton className="h-8 w-20" />
-              </div>
-              <div className="flex items-center space-x-2">
-                <Skeleton className="hidden h-8 w-8 lg:block" />
-                <Skeleton className="h-8 w-8" />
-                <Skeleton className="h-8 w-8" />
-                <Skeleton className="hidden h-8 w-8 lg:block" />
-              </div>
+              <Skeleton className="h-6 w-20 rounded-full" />
             </div>
+            <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+              <Skeleton className="h-3 w-24" />
+              <Skeleton className="h-3 w-16" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {showPagination && (
+        <div className="flex gap-4 justify-between items-center px-2">
+          <Skeleton className="h-6 w-28 sm:w-36" />
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-8 w-8 rounded-full" />
+            <Skeleton className="h-8 w-16 rounded" />
+            <Skeleton className="h-8 w-16 rounded" />
           </div>
         </div>
       )}

@@ -62,6 +62,56 @@ import TablePagination from "./TablePagination";
  * />;
  * ```
  */
+/**
+ * Default mobile card view when no custom mobileCardRender is provided
+ */
+const DefaultMobileCard = ({ row, columns, tableInfo, logics, enableSelect }) => {
+  const getNestedValue = (obj, path) => {
+    if (!path) return null;
+    return path.split(".").reduce((acc, part) => acc?.[part], obj);
+  };
+
+  return (
+    <div className="bg-white rounded-xl border p-4 shadow-xs space-y-3">
+      {enableSelect && (
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="text-xs font-semibold uppercase text-slate-500">Select</span>
+          <input
+            type="checkbox"
+            className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+            checked={tableInfo?.selectedRows?.includes(row?.id)}
+            onChange={() => tableInfo?.handleRowSelect(row?.id)}
+          />
+        </div>
+      )}
+      <div className="grid grid-cols-1 gap-2">
+        {columns.map((col, idx) => {
+          if (col.accessorKey === "actions" || col.accessorKey === "select") return null;
+          const headerText =
+            typeof col.header === "function" ? col.header({ tableInfo }) : col.header;
+          const cellContent = col.cell
+            ? col.cell({ row, tableInfo, logics })
+            : getNestedValue(row, col.accessorKey);
+
+          return (
+            <div key={idx} className="flex items-start justify-between gap-2 py-1 border-b last:border-b-0">
+              <span className="text-xs font-medium text-slate-500">{headerText}</span>
+              <div className="text-sm font-medium text-slate-900 text-right">{cellContent}</div>
+            </div>
+          );
+        })}
+      </div>
+      {columns.find((c) => c.accessorKey === "actions") && (
+        <div className="pt-2 border-t flex justify-end">
+          {columns
+            .find((c) => c.accessorKey === "actions")
+            ?.cell?.({ row, tableInfo, logics })}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const TableMaker = memo(
   ({
     columns,
@@ -74,7 +124,11 @@ const TableMaker = memo(
     showPagination = true,
     showTableHeader = true,
     logics = {},
+    mobileCardRender = null,
   }) => {
+    const data = tableInfo?.data?.data;
+    const hasData = Array.isArray(data) && data.length > 0;
+
     return (
       <>
         {render(tableInfo)}
@@ -87,16 +141,47 @@ const TableMaker = memo(
         ) : (
           <>
             {headerRender(tableInfo)}
-            <Table
-              className={className}
-              enableSelect={enableSelect}
-              columns={columns}
-              data={tableInfo?.data?.data}
-              tableInfo={tableInfo}
-              showTableHeader={showTableHeader}
-              noDataRender={noDataRender}
-              logics={logics}
-            />
+
+            {/* Desktop Table View (≥ md) */}
+            <div className="hidden md:block">
+              <Table
+                className={className}
+                enableSelect={enableSelect}
+                columns={columns}
+                data={data}
+                tableInfo={tableInfo}
+                showTableHeader={showTableHeader}
+                noDataRender={noDataRender}
+                logics={logics}
+              />
+            </div>
+
+            {/* Mobile Card View (< md) */}
+            <div className="block md:hidden mb-4">
+              {hasData ? (
+                <div className="space-y-3">
+                  {data.map((row, index) =>
+                    mobileCardRender ? (
+                      mobileCardRender({ row, index, tableInfo, logics })
+                    ) : (
+                      <DefaultMobileCard
+                        key={row.id || index}
+                        row={row}
+                        columns={columns}
+                        tableInfo={tableInfo}
+                        logics={logics}
+                        enableSelect={enableSelect}
+                      />
+                    )
+                  )}
+                </div>
+              ) : (
+                <div className="bg-white rounded-xl border p-8 text-center">
+                  {noDataRender ? noDataRender() : "No results."}
+                </div>
+              )}
+            </div>
+
             {showPagination && (
               <TablePagination
                 tableInfo={tableInfo}
