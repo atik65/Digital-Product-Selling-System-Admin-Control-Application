@@ -1,0 +1,123 @@
+/* Jodit Editor Theme Integration */
+
+.jodit-container:not(.jodit_inline) {
+  background-color: var(--background) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+}
+
+.jodit-container:not(.jodit_inline) .jodit-workplace {
+  background-color: var(--background) !important;
+  border: 0 !important;
+  color: var(--foreground) !important;
+}
+
+.jodit-toolbar__box:not(:empty) {
+  background-color: var(--muted) !important;
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.jodit-icon {
+  stroke: var(--muted-foreground) !important;
+  fill: var(--muted-foreground) !important;
+}
+
+.jodit-ui-group_separated_true:not(:last-child):not(
+    .jodit-ui-group_before-spacer_true
+  )::after {
+  border-right: 1px solid var(--border) !important;
+}
+
+.jodit-toolbar-button__button:hover:not([disabled]),
+.jodit-toolbar-button__trigger:hover:not([disabled]) {
+  background-color: var(--accent) !important;
+  color: var(--accent-foreground) !important;
+}
+
+.jodit-toolbar-button_with-trigger_true:hover:not([disabled]) {
+  border-color: var(--border) !important;
+}
+
+.jodit-toolbar-button__trigger svg {
+  stroke: var(--muted-foreground) !important;
+  fill: var(--muted-foreground) !important;
+}
+
+.jodit-status-bar {
+  background-color: var(--muted) !important;
+  color: var(--muted-foreground) !important;
+  border-top: 1px solid var(--border) !important;
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+.jodit-toolbar__box:not(:empty) .jodit-toolbar-editor-collection::after,
+.jodit-toolbar-editor-collection_mode_horizontal::after {
+  background-color: var(--muted) !important;
+}
+
+.jodit-popup {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.jodit-popup__content {
+  background-color: var(--popover) !important;
+  color: var(--popover-foreground) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.jodit-ui-input__input {
+  background-color: var(--input) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.jodit-add-new-line {
+  background-color: var(--background) !important;
+}
+
+.jodit-status-bar-link {
+  display: none !important;
+}
+
+.jodit-ui-select__list {
+  max-height: 260px !important;
+  overflow-y: auto !important;
+}
+
+/* Focus states */
+.jodit-container:not(.jodit_inline):focus-within {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+}
+
+.jodit-wysiwyg {
+  color: var(--foreground) !important;
+}
+
+.jodit-wysiwyg a {
+  color: var(--primary) !important;
+  text-decoration: underline !important;
+}
+
+.jodit-wysiwyg code {
+  background-color: var(--muted) !important;
+  color: var(--foreground) !important;
+  padding: 0.125rem 0.25rem !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Neutralize prose backgrounds and spacing for editor content */
+.prose :where(*) {
+  background-color: transparent !important;
+}
+
+.prose p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
