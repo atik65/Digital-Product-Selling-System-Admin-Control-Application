@@ -2,7 +2,7 @@ import useApi from "@/hooks/useApi";
 import useSyncParams from "@/hooks/useSyncParams";
 import useSelect from "./useSelect";
 import { useEffect } from "react";
-import { appointmentMockData } from "@/pages/demo/utils/mockData";
+import { appointmentMockData } from "@/views/demo/utils/mockData";
 
 const useTable = ({ filter, api, apiCacheKey, staleTime }) => {
   const { selectedRows, handleRowSelect, handleSelectAll, handleUnselectAll } =

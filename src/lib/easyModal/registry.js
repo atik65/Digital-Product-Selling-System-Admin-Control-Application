@@ -9,7 +9,7 @@ const MODAL_REGISTRY = {
   documentType: lazy(
     () =>
       // import("@/pages/settings/document-type/components/AddEdit")
-      import("@/pages/demo/components/AddEdit"),
+      import("@/views/demo/components/AddEdit"),
   ),
 
   // Add more modals as needed:

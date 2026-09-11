@@ -1,15 +1,15 @@
-import Login from "@/pages/auth/login/Login";
-import Overview from "@/pages/overview/Overview";
-import ChangePassword from "@/pages/profile/ChangePassword";
-import Profile from "@/pages/profile/Profile";
-import UpdateProfile from "@/pages/profile/UpdateProfile";
+import Login from "@/views/auth/login/Login";
+import Overview from "@/views/overview/Overview";
+import ChangePassword from "@/views/profile/ChangePassword";
+import Profile from "@/views/profile/Profile";
+import UpdateProfile from "@/views/profile/UpdateProfile";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute, { PublicRoute } from "./ProtectedRoute";
-import DemoList from "@/pages/demo/DemoList";
-import Signup from "@/pages/auth/signup/Signup";
-import ForgotPassword from "@/pages/auth/forgot-password/ForgotPassword";
-import VerifyOtp from "@/pages/auth/verify-otp/VerifyOtp";
-import ResetPassword from "@/pages/auth/reset-password/ResetPassword";
+import DemoList from "@/views/demo/DemoList";
+import Signup from "@/views/auth/signup/Signup";
+import ForgotPassword from "@/views/auth/forgot-password/ForgotPassword";
+import VerifyOtp from "@/views/auth/verify-otp/VerifyOtp";
+import ResetPassword from "@/views/auth/reset-password/ResetPassword";
 
 export const router = createBrowserRouter([
   {

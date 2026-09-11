@@ -1,4 +1,4 @@
-import authApi from "@/pages/auth/api";
+import authApi from "@/views/auth/api";
 import { getStoredUser, isAuthenticated } from "@/lib/cookies";
 import useApi from "./useApi";
 
