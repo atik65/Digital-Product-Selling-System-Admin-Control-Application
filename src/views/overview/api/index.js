@@ -1,8 +1,19 @@
-const endpoint = "/api/admin/dashboard";
+const endpoint = "/api/v1/admin/dashboard";
 
 const overviewApi = {
-  cacheKey: "dashboardStatistics",
-  statistics: { endpoint, path: "/statistics", method: "get" },
+  cacheKey: "adminDashboardSummary",
+  activityCacheKey: "adminDashboardRecentActivity",
+
+  summary: {
+    endpoint,
+    path: "/summary",
+    method: "get",
+  },
+  recentActivity: {
+    endpoint,
+    path: "/recent-activity",
+    method: "get",
+  },
 };
 
 export default overviewApi;

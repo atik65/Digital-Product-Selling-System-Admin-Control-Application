@@ -118,6 +118,10 @@ export default function useRequest() {
               }
             }
           );
+          // Invalidate to trigger background re-sync
+          queryClient.invalidateQueries({
+            queryKey: [variables.cacheKey],
+          });
         }
 
         isToast && data?.message && toast.success(data?.message);

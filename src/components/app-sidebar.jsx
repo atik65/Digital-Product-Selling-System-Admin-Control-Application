@@ -2,22 +2,26 @@
 
 import * as React from "react";
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
+  LayoutDashboard,
+  Layers,
+  FolderTree,
+  ShoppingBag,
+  CheckCircle2,
+  CreditCard,
+  MessageSquare,
+  Coins,
+  Users,
+  Tag,
+  Sparkles,
+  Megaphone,
   Settings2,
-  SquareTerminal,
+  Layout,
+  Store,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
-import { AppSidebarHeader, TeamSwitcher } from "@/components/team-switcher";
+import { AppSidebarHeader } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -26,91 +30,118 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-const data = {
+const navConfig = {
   intro: {
-    title: "Admin Panel",
-    logo: GalleryVerticalEnd,
+    title: "BoostGhor Admin",
+    logo: Store,
   },
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "System Admin",
+    email: "admin@example.com",
+    avatar: "",
   },
-  teams: [
+  core: [
     {
-      name: "Acme   Inc.",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
+      title: "Overview",
+      url: "/",
+      icon: LayoutDashboard,
+      isActive: true,
     },
   ],
-  navMain: [
+  catalog: [
     {
-      title: "Parent Menu",
-      url: "#",
-      icon: Frame,
-      isActive: true,
-      items: [
-        {
-          title: "Menu Item One",
-          url: "#",
-        },
-        {
-          title: "Menu Item Two",
-          url: "#",
-        },
-        {
-          title: "Menu Item Three",
-          url: "#",
-        },
-        {
-          title: "Menu Item Four",
-          url: "#",
-        },
-      ],
+      title: "Products Catalog",
+      url: "/products",
+      icon: Layers,
     },
     {
-      title: "Single Link One",
-      url: "#",
-      icon: Map,
+      title: "Categories",
+      url: "/categories",
+      icon: FolderTree,
+    },
+  ],
+  sales: [
+    {
+      title: "Orders Fulfillment",
+      url: "/orders",
+      icon: ShoppingBag,
     },
     {
-      title: "Single Link Two",
-      url: "#",
-      icon: PieChart,
+      title: "Payment Verification",
+      url: "/payments",
+      icon: CheckCircle2,
     },
     {
-      title: "Single Link Three",
-      url: "#",
-      icon: Bot,
+      title: "Payment Gateways",
+      url: "/payment-methods",
+      icon: CreditCard,
+    },
+    {
+      title: "SMS Device Logs",
+      url: "/sms-logs",
+      icon: MessageSquare,
+    },
+    {
+      title: "Wallet Top-Ups",
+      url: "/wallet-topups",
+      icon: Coins,
+    },
+  ],
+  marketing: [
+    {
+      title: "Customer Directory",
+      url: "/users",
+      icon: Users,
+    },
+    {
+      title: "Discount Coupons",
+      url: "/coupons",
+      icon: Tag,
+    },
+    {
+      title: "Lucky Spin Lotteries",
+      url: "/lottery",
+      icon: Sparkles,
+    },
+    {
+      title: "Marketing CMS",
+      url: "/marketing",
+      icon: Megaphone,
+    },
+  ],
+  system: [
+    {
+      title: "Site Settings",
+      url: "/settings",
+      icon: Settings2,
+    },
+    {
+      title: "Demo Starter View",
+      url: "/demo",
+      icon: Layout,
     },
   ],
 };
 
 export function AppSidebar({ ...props }) {
   return (
-    <Sidebar className={"border-none "} collapsible="icon" {...props}>
-      <SidebarHeader className={"bg-[#0f6b47] text-white "}>
-        <AppSidebarHeader intro={data.intro} />
+    <Sidebar className="border-none" collapsible="icon" {...props}>
+      <SidebarHeader className="bg-[#0f6b47] text-white">
+        <AppSidebarHeader intro={navConfig.intro} />
       </SidebarHeader>
-      <SidebarContent className={"border-r "}>
-        <NavMain groupLabel="Group One" items={data.navMain} />
-        <NavMain groupLabel="Group Two" items={data.navMain} />
-        <NavMain groupLabel="Group Three" items={data.navMain} />
-        {/* <NavProjects projects={data.projects} /> */}
+
+      <SidebarContent className="border-r">
+        <NavMain groupLabel="Analytics" items={navConfig.core} />
+        <NavMain groupLabel="Store Catalog" items={navConfig.catalog} />
+        <NavMain groupLabel="Sales & Finances" items={navConfig.sales} />
+        <NavMain groupLabel="Customers & Marketing" items={navConfig.marketing} />
+        <NavMain groupLabel="System" items={navConfig.system} />
       </SidebarContent>
-      <SidebarFooter className={"border-r "}>
-        <NavUser user={data.user} />
+
+      <SidebarFooter className="border-r">
+        <NavUser user={navConfig.user} />
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   );

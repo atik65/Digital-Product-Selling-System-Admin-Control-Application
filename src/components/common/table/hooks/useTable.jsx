@@ -20,8 +20,9 @@ const useTable = ({ filter, api, apiCacheKey, staleTime }) => {
 
   const { data, isLoading } = useApi({
     params: {
-      page,
-      limit: per_page,
+      page: Number(page),
+      size: Number(per_page),
+      limit: Number(per_page),
       ...filter,
     },
     api,
@@ -34,7 +35,7 @@ const useTable = ({ filter, api, apiCacheKey, staleTime }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParamsSyncParams]);
 
-  // Filter mock data when demo mock is active
+  // Filter mock data when demo mock is active or no api provided
   const filteredMockData = appointmentMockData.filter((item) => {
     if (filter?.search) {
       const q = filter.search.toLowerCase();
@@ -63,11 +64,50 @@ const useTable = ({ filter, api, apiCacheKey, staleTime }) => {
     Number(page) * Number(per_page)
   );
 
-  const tableInfo = {
-    // data: data?.data ?? [],
-    data: { data: pagedMockData },
-    pagination: {
-      ...data?.data?.pagination,
+  // Resolve items from real API or mock fallback
+  let items = [];
+  let paginationMeta = {};
+
+  if (api && data?.data) {
+    if (Array.isArray(data.data.items)) {
+      // Backend Paginated Envelope
+      items = data.data.items;
+      const p = data.data.pagination || {};
+      paginationMeta = {
+        page: p.current_page ?? Number(page),
+        per_page: Number(per_page),
+        total: p.total ?? items.length,
+        last_page: p.last_page ?? 1,
+        from: p.from ?? 0,
+        to: p.to ?? items.length,
+        prev_page: p.prev_page ?? (Number(page) > 1 ? Number(page) - 1 : null),
+        next_page: p.next_page ?? (Number(page) < (p.last_page ?? 1) ? Number(page) + 1 : null),
+      };
+    } else if (Array.isArray(data.data)) {
+      // Non-paginated array
+      const rawList = data.data;
+      const total = rawList.length;
+      const lastPage = Math.ceil(total / Number(per_page)) || 1;
+      items = rawList.slice(
+        (Number(page) - 1) * Number(per_page),
+        Number(page) * Number(per_page)
+      );
+      paginationMeta = {
+        page: Number(page),
+        per_page: Number(per_page),
+        total,
+        last_page: lastPage,
+        from: total === 0 ? 0 : (Number(page) - 1) * Number(per_page) + 1,
+        to: Math.min(Number(page) * Number(per_page), total),
+        prev_page: Number(page) > 1 ? Number(page) - 1 : null,
+        next_page: Number(page) < lastPage ? Number(page) + 1 : null,
+      };
+    } else {
+      items = [];
+    }
+  } else if (!api) {
+    items = pagedMockData;
+    paginationMeta = {
       page: Number(page),
       per_page: Number(per_page),
       total: totalMock,
@@ -76,16 +116,19 @@ const useTable = ({ filter, api, apiCacheKey, staleTime }) => {
       to: toMock,
       prev_page: Number(page) > 1 ? Number(page) - 1 : null,
       next_page: Number(page) < lastPageMock ? Number(page) + 1 : null,
-    },
+    };
+  }
+
+  const tableInfo = {
+    data: { data: items },
+    pagination: paginationMeta,
     routerSyncParams,
     handleRowSelect,
     handleSelectAll,
     handleUnselectAll,
     selectedRows,
     cacheKey: apiCacheKey,
-
-    // isLoading,
-    isLoading: false,
+    isLoading: api ? isLoading : false,
   };
   return { tableInfo };
 };
