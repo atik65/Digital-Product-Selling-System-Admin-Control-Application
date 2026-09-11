@@ -1,13 +1,13 @@
 import AdminLayout from "@/components/layout/AdminLayout";
 import usePageTitle from "@/hooks/usePageTitle";
-import { getCookie } from "@/lib/cookies";
+import { isAuthenticated } from "@/lib/cookies";
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function ProtectedRoute() {
-  const isLoggedIn = getCookie("signedIn") === "true";
+  const loggedIn = isAuthenticated();
   usePageTitle();
 
-  return !isLoggedIn ? (
+  return loggedIn ? (
     <AdminLayout>
       <Outlet />
     </AdminLayout>
@@ -17,8 +17,9 @@ export default function ProtectedRoute() {
 }
 
 export function PublicRoute() {
-  const isLoggedIn = getCookie("signedIn") === "true";
+  const loggedIn = isAuthenticated();
   usePageTitle();
 
-  return isLoggedIn ? <Navigate to="/" replace /> : <Outlet />;
+  return loggedIn ? <Navigate to="/" replace /> : <Outlet />;
 }
+

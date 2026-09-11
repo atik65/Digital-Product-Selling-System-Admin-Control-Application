@@ -1,21 +1,19 @@
-import axiosInstance from "./axiosInstance";
-import { removeCookie } from "./cookies";
-import { removeStoredValue } from "./storage";
+import { clearAuthCookies } from "./cookies";
 
 export default async function logout() {
   try {
-    await axiosInstance({
-      api: {
-        method: "get",
-        endpoint: "/api/user/auth",
-        path: "/logout",
-      },
+    await fetch("/api/v1/auth/logout", {
+      method: "POST",
+      credentials: "include",
     });
   } catch (error) {
-    console.error("Logout API error:", error);
+    console.error("Logout request error:", error);
   } finally {
-    removeCookie("signedIn");
-    removeStoredValue("deskSession");
-    window.location.href = "/login";
+    clearAuthCookies();
+    if (typeof window !== "undefined") {
+      window.location.href = "/login";
+    }
   }
 }
+
+

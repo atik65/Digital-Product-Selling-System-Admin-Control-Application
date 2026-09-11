@@ -9,8 +9,8 @@ const loginSchema = {
       .required("Email is required"),
     password: yup
       .string()
-      .required("No password provided.")
-      .min(8, "Password is too short - should be 8 characters minimum."),
+      .required("Password is required.")
+      .min(6, "Password must be at least 6 characters."),
   }),
   values: () => ({
     email: "",

@@ -15,18 +15,36 @@ export const UserNav = ({ userProfile, onLogout }) => {
   const navigate = useNavigate();
 
   const getInitials = () => {
-    if (!userProfile?.first_name) return "U";
-    const firstInitial = userProfile.first_name.charAt(0).toUpperCase();
-    const lastInitial = userProfile.last_name
-      ? userProfile.last_name.charAt(0).toUpperCase()
-      : "";
-    return `${firstInitial}${lastInitial}`;
+    if (userProfile?.name) {
+      const parts = userProfile.name.trim().split(" ");
+      if (parts.length >= 2) {
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+      }
+      return parts[0].slice(0, 2).toUpperCase();
+    }
+    if (userProfile?.first_name) {
+      const firstInitial = userProfile.first_name.charAt(0).toUpperCase();
+      const lastInitial = userProfile.last_name
+        ? userProfile.last_name.charAt(0).toUpperCase()
+        : "";
+      return `${firstInitial}${lastInitial}`;
+    }
+    if (userProfile?.username) {
+      return userProfile.username.slice(0, 2).toUpperCase();
+    }
+    return "AD";
   };
 
   const getUserName = () => {
-    if (!userProfile?.first_name) return "User";
-    return `${userProfile.first_name} ${userProfile.last_name || ""}`;
+    if (userProfile?.name) return userProfile.name;
+    if (userProfile?.first_name) {
+      return `${userProfile.first_name} ${userProfile.last_name || ""}`.trim();
+    }
+    if (userProfile?.username) return userProfile.username;
+    return "Admin";
   };
+
+  const avatarSrc = userProfile?.image || userProfile?.avatar?.path;
 
   return (
     <DropdownMenu>
@@ -36,7 +54,7 @@ export const UserNav = ({ userProfile, onLogout }) => {
           className="flex items-center gap-2 rounded-full transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-white/20"
         >
           <Avatar className="h-9 w-9 border-2 border-white/20">
-            <AvatarImage src={userProfile?.avatar?.path} alt={getUserName()} />
+            <AvatarImage src={avatarSrc} alt={getUserName()} />
             <AvatarFallback className="bg-white/20 text-sm font-semibold text-white">
               {getInitials()}
             </AvatarFallback>
@@ -48,7 +66,7 @@ export const UserNav = ({ userProfile, onLogout }) => {
           <div className="flex items-center gap-3 px-2 py-2.5">
             <Avatar className="h-10 w-10">
               <AvatarImage
-                src={userProfile?.avatar?.path}
+                src={avatarSrc}
                 alt={getUserName()}
               />
               <AvatarFallback className="bg-[#0f6b47]/10 text-sm font-semibold text-[#0f6b47]">
