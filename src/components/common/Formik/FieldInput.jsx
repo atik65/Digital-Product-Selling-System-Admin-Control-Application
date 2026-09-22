@@ -36,10 +36,15 @@ const FieldInput = ({
       render={({ field }) => (
         <FormItem>
           {label && (
-            <FormLabel>
-              {label}
+            <FormLabel className="flex items-center gap-0.5 text-sm leading-none h-5">
+              <span>{label}</span>
               {required && (
-                <span className="font-bold text-base text-destructive">*</span>
+                <span
+                  className="text-destructive font-semibold text-sm leading-none ml-0.5"
+                  aria-hidden="true"
+                >
+                  *
+                </span>
               )}
             </FormLabel>
           )}
