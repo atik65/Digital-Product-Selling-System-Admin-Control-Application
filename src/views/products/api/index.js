@@ -1,3 +1,4 @@
+const publicProductsEndpoints = "/api/v1/products";
 const productsEndpoint = "/api/v1/admin/products";
 const fieldsEndpoint = "/api/v1/admin/fields";
 const packagesEndpoint = "/api/v1/admin/packages";
@@ -34,7 +35,7 @@ const productApi = {
 
   // Dynamic Fields
   listFields: (productId) => ({
-    endpoint: productsEndpoint,
+    endpoint: publicProductsEndpoints,
     path: `/${productId}/fields`,
     method: "get",
   }),

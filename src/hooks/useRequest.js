@@ -88,8 +88,8 @@ export default function useRequest() {
       } else {
         toast.error(
           err?.response?.data?.errors?.common?.msg ||
-            err?.response?.data?.message ||
-            err?.message
+          err?.response?.data?.message ||
+          err?.message
         );
       }
 
@@ -150,7 +150,7 @@ const paginationCrud = (oldData, data, variables) => {
   }
   // update
   else if (variables?.id && variables.api.method.toLowerCase() !== "delete") {
-    const updatedData = oldData?.data?.data.map((curr) => {
+    const updatedData = oldData?.data?.data?.map((curr) => {
       if (curr?.id === variables.id) {
         return { ...curr, ...data?.data };
       }

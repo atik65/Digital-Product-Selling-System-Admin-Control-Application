@@ -49,6 +49,7 @@ const ProductsList = () => {
     api: categoryApi.list,
     cacheKey: categoryApi.cacheKey,
   });
+
   const categoryOptions = [
     { id: "", label: "All Categories" },
     ...(categoriesData?.data || []).map((c) => ({
