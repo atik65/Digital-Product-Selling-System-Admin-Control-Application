@@ -72,7 +72,7 @@ const ManagePackagesModal = ({ open, onClose, product }) => {
             sort_order: Number(data.sort_order) || 0,
           },
           api: productApi.updatePackage(editingPackage.id),
-          cacheKey: productApi.cacheKey,
+          cacheKey: cacheKey,
           handleDone: () => {
             handleCancelForm();
             refetch();
@@ -87,7 +87,7 @@ const ManagePackagesModal = ({ open, onClose, product }) => {
             sort_order: Number(data.sort_order) || 0,
           },
           api: productApi.createPackage(product.id),
-          cacheKey: productApi.cacheKey,
+          cacheKey: cacheKey,
           handleDone: () => {
             handleCancelForm();
             refetch();
@@ -105,7 +105,7 @@ const ManagePackagesModal = ({ open, onClose, product }) => {
         id: pkg.id,
         data: { is_active: !pkg.is_active },
         api: productApi.togglePackageStatus(pkg.id),
-        cacheKey: productApi.cacheKey,
+        cacheKey: cacheKey,
         handleDone: () => {
           refetch();
         },
@@ -121,7 +121,7 @@ const ManagePackagesModal = ({ open, onClose, product }) => {
       await mutateAsync({
         id: packageId,
         api: productApi.deletePackage(packageId),
-        cacheKey: productApi.cacheKey,
+        cacheKey: cacheKey,
         handleDone: () => {
           refetch();
         },

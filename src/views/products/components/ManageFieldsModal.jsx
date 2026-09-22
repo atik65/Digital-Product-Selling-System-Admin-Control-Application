@@ -28,12 +28,15 @@ const inputTypes = [
 ];
 
 const ManageFieldsModal = ({ open, onClose, product }) => {
+
+
+
   const [editingField, setEditingField] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const { mutateAsync, isPending } = useRequest();
 
   const cacheKey = `productFields-${product?.id}`;
-  const { data: fieldsData, isLoading, refetch } = useApi({
+  const { data: fieldsData, isLoading, refetch, isRefetching } = useApi({
     api: product?.id ? productApi.listFields(product.id) : null,
     cacheKey,
     trigger: !!product?.id && open,
@@ -78,7 +81,7 @@ const ManageFieldsModal = ({ open, onClose, product }) => {
             sort_order: Number(data.sort_order) || 0,
           },
           api: productApi.updateField(editingField.id),
-          cacheKey: productApi.cacheKey,
+          cacheKey: cacheKey,
           handleDone: () => {
             handleCancelForm();
             refetch();
@@ -91,7 +94,7 @@ const ManageFieldsModal = ({ open, onClose, product }) => {
             sort_order: Number(data.sort_order) || 0,
           },
           api: productApi.createField(product.id),
-          cacheKey: productApi.cacheKey,
+          cacheKey: cacheKey,
           handleDone: () => {
             handleCancelForm();
             refetch();
@@ -109,7 +112,7 @@ const ManageFieldsModal = ({ open, onClose, product }) => {
       await mutateAsync({
         id: fieldId,
         api: productApi.deleteField(fieldId),
-        cacheKey: productApi.cacheKey,
+        cacheKey: cacheKey,
         handleDone: () => {
           refetch();
         },

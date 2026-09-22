@@ -100,7 +100,7 @@ export default function useRequest() {
       try {
         variables?.addEditCacheKey &&
           queryClient.setQueryData([variables?.addEditCacheKey], (oldData) => {
-            if (!oldData) return;
+            if (!oldData) return oldData;
             return { data: { ...oldData?.data?.data, ...data?.data } };
           });
 
@@ -123,58 +123,90 @@ export default function useRequest() {
             queryKey: [variables.cacheKey],
           });
         }
+      } catch (error) {
+        console.error("Cache update error in useRequest:", error);
+      }
 
+      try {
         isToast && data?.message && toast.success(data?.message);
-
         variables.handleDone && (await variables.handleDone(data, variables));
       } catch (error) {
-        console.error(error);
+        console.error("handleDone error in useRequest:", error);
       }
     },
   });
 }
 
-const paginationCrud = (oldData, data, variables) => {
-  // create
-  if (!variables?.id) {
+const resolveListContainer = (oldData) => {
+  if (!oldData) return null;
+  if (Array.isArray(oldData?.data?.items)) {
     return {
-      ...oldData,
-      data: {
-        ...oldData?.data,
-        data:
-          variables?.sort === "asc"
-            ? [...oldData?.data?.data, data?.data]
-            : [data?.data, ...oldData?.data?.data],
-      },
+      list: oldData.data.items,
+      update: (newList) => ({
+        ...oldData,
+        data: { ...oldData.data, items: newList },
+      }),
     };
   }
+  if (Array.isArray(oldData?.data?.data)) {
+    return {
+      list: oldData.data.data,
+      update: (newList) => ({
+        ...oldData,
+        data: { ...oldData.data, data: newList },
+      }),
+    };
+  }
+  if (Array.isArray(oldData?.data)) {
+    return {
+      list: oldData.data,
+      update: (newList) => ({
+        ...oldData,
+        data: newList,
+      }),
+    };
+  }
+  if (Array.isArray(oldData)) {
+    return {
+      list: oldData,
+      update: (newList) => newList,
+    };
+  }
+  return null;
+};
+
+const paginationCrud = (oldData, data, variables) => {
+  const container = resolveListContainer(oldData);
+  if (!container) return oldData;
+
+  const { list, update } = container;
+  const newItem = data?.data ?? data;
+
+  // create
+  if (!variables?.id) {
+    const updatedList =
+      variables?.sort === "asc"
+        ? [...list, newItem]
+        : [newItem, ...list];
+    return update(updatedList);
+  }
   // update
-  else if (variables?.id && variables.api.method.toLowerCase() !== "delete") {
-    const updatedData = oldData?.data?.data?.map((curr) => {
+  else if (variables?.id && variables.api?.method?.toLowerCase() !== "delete") {
+    const updatedList = list.map((curr) => {
       if (curr?.id === variables.id) {
-        return { ...curr, ...data?.data };
+        return { ...curr, ...(newItem && typeof newItem === "object" ? newItem : {}) };
       }
       return curr;
     });
-    return {
-      // update item
-      ...oldData,
-      data: {
-        ...oldData?.data,
-        data: updatedData,
-      },
-    };
+    return update(updatedList);
   }
   // delete
-  else if (variables?.id && variables.api.method.toLowerCase() === "delete") {
-    return {
-      ...oldData,
-      data: {
-        ...oldData?.data,
-        data: oldData?.data?.data.filter((curr) => curr?.id !== variables.id),
-      },
-    };
+  else if (variables?.id && variables.api?.method?.toLowerCase() === "delete") {
+    const updatedList = list.filter((curr) => curr?.id !== variables.id);
+    return update(updatedList);
   }
+
+  return oldData;
 };
 
 // oldData is previous data and data is new data
