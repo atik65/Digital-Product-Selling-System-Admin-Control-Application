@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format, set } from "date-fns";
 import {
@@ -8,6 +7,7 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import {
   Popover,
@@ -34,84 +34,84 @@ const FieldDatePicker = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleChange = (date, field) => {
-    const formattedDate = format(date, "yyyy-MM-dd");
-
-    field.onChange(formattedDate);
-    setIsFocused(false);
-    if (onChange) {
-      onChange(formattedDate);
-    }
-  };
-
-  //   console.log("is focused:", isFocused);
-
   return (
     <FormField
       control={form.control}
       name={name}
-      render={({ field }) => (
-        <div className="flex flex-col">
-          <FormItem>
-            <div>
-              {label && (
-                <FormLabel className="text-sm font-semibold text-gray-700 flex items-center gap-0.5 h-5 leading-none">
-                  <span>{label}</span>
-                  {required && (
-                    <span
-                      className="text-destructive font-semibold text-sm leading-none ml-0.5"
-                      aria-hidden="true"
-                    >
-                      *
-                    </span>
-                  )}
-                </FormLabel>
-              )}
-            </div>
-            <FormControl>
-              <motion.div className="relative group">
-                {/* Gradient glow effect → Brand green tint */}
-                <div
-                  className={cn(
-                    "absolute -inset-0.5 bg-[#006A4E]/20 rounded-[10px] blur-sm opacity-0 group-hover:opacity-20 transition-opacity duration-300",
-                    isFocused && "opacity-30"
-                  )}
-                />
+      render={({ field }) => {
+        let selectedDate = undefined;
+        if (field.value) {
+          if (field.value instanceof Date) {
+            selectedDate = isNaN(field.value.getTime()) ? undefined : field.value;
+          } else {
+            const d = new Date(field.value);
+            selectedDate = isNaN(d.getTime()) ? undefined : d;
+          }
+        }
 
+        const handleChange = (date) => {
+          if (!date) {
+            field.onChange("");
+            return;
+          }
+          const formattedDate = format(date, "yyyy-MM-dd");
+          field.onChange(formattedDate);
+          setIsFocused(false);
+          if (onChange) {
+            onChange(formattedDate);
+          }
+        };
+
+        return (
+          <FormItem>
+            {label && (
+              <FormLabel className="flex items-center gap-0.5 text-sm leading-none h-5">
+                <span>{label}</span>
+                {required && (
+                  <span
+                    className="text-destructive font-semibold text-sm leading-none ml-0.5"
+                    aria-hidden="true"
+                  >
+                    *
+                  </span>
+                )}
+              </FormLabel>
+            )}
+            <FormControl>
+              <div className="relative group">
                 <Popover open={isFocused} onOpenChange={setIsFocused}>
                   <PopoverTrigger asChild>
                     <Button
+                      type="button"
                       variant="outline"
                       disabled={disabled}
                       className={cn(
-                        "relative h-12 px-4 w-full justify-start text-left font-medium border border-[#D1D5DC] rounded-[10px] text-sm text-gray-800 transition-all duration-300 cursor-pointer",
-                        "focus:border-[#D1D5DC] focus:border focus:ring-2 focus:ring-[#006A4E]/20",
-                        "hover:border",
-                        !field.value && "text-gray-500",
-                        disabled && "opacity-50 cursor-not-allowed bg-gray-50",
+                        "relative h-10 px-3 w-full justify-start text-left font-normal border border-slate-200 rounded-xl text-xs bg-white text-slate-800 transition-all duration-200 cursor-pointer shadow-none",
+                        "focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20",
+                        "hover:bg-slate-50 hover:border-slate-300",
+                        !selectedDate && "text-slate-400",
+                        disabled && "opacity-50 cursor-not-allowed bg-slate-50",
                         className
                       )}
                       {...props}
                     >
-                      {icon || <CalendarIcon className="mr-2 h-4 w-4" />}
-                      {field.value ? (
-                        format(field.value, "PPP")
+                      {icon || <CalendarIcon className="mr-2 h-4 w-4 shrink-0 text-slate-400" />}
+                      {selectedDate ? (
+                        <span className="truncate">{format(selectedDate, "PPP")}</span>
                       ) : (
-                        <span>{placeholder}</span>
+                        <span className="text-slate-400 truncate">{placeholder}</span>
                       )}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent
-                    className={cn(
-                      "w-auto p-0 bg-white/95 backdrop-blur-sm border-2 border-gray-200/80 rounded-[10px] shadow-xl overflow-hidden"
-                    )}
+                    className="w-auto p-0 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden z-[100]"
                     align="start"
                   >
                     <Calendar
                       mode="single"
-                      selected={field.value}
+                      selected={selectedDate}
                       onSelect={(date) => {
-                        handleChange(date, field);
+                        handleChange(date);
                       }}
                       disabled={disabled}
                       initialFocus
@@ -119,13 +119,13 @@ const FieldDatePicker = ({
                     />
                   </PopoverContent>
                 </Popover>
-              </motion.div>
+              </div>
             </FormControl>
-
-            <FormMessage className="text-xs font-bold text-rose-500 mt-0" />
+            {description && <FormDescription>{description}</FormDescription>}
+            <FormMessage />
           </FormItem>
-        </div>
-      )}
+        );
+      }}
     />
   );
 };

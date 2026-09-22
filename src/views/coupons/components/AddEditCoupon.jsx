@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import FieldInput from "@/components/common/Formik/FieldInput";
+import FieldDatePicker from "@/components/common/Formik/FieldDatePicker";
 import FormikWrapper from "@/components/common/Formik/FormikWrapper";
 import SwitchField from "@/components/common/Formik/SwitchField";
 import { Button } from "@/components/ui/button";
@@ -66,17 +67,17 @@ const AddEditCoupon = ({ open, onClose, editData = null }) => {
 
   return (
     <Sheet open={open} onOpenChange={(val) => !val && onClose()}>
-      <SheetContent className="sm:max-w-lg overflow-y-auto">
-        <SheetHeader>
-          <SheetTitle>
+      <SheetContent className="sm:max-w-xl overflow-y-auto">
+        <SheetHeader className="pb-4 border-b border-slate-100">
+          <SheetTitle className="text-base font-bold text-slate-900">
             {isEditMode ? "Edit Promotional Coupon" : "Create Coupon Code"}
           </SheetTitle>
-          <SheetDescription>
+          <SheetDescription className="text-xs text-slate-500">
             Configure promotional discount rules, caps, and redemption limits
           </SheetDescription>
         </SheetHeader>
 
-        <div className="mt-6 px-1">
+        <div className="mt-4 pb-8">
           <FormikWrapper form={form}>
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
@@ -92,7 +93,7 @@ const AddEditCoupon = ({ open, onClose, editData = null }) => {
                 />
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">
+                  <label className="text-xs font-semibold text-slate-700 h-5 flex items-center">
                     Discount Type *
                   </label>
                   <select
@@ -161,27 +162,19 @@ const AddEditCoupon = ({ open, onClose, editData = null }) => {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">
-                    Starts At
-                  </label>
-                  <input
-                    type="datetime-local"
-                    {...form.register("starts_at")}
-                    className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-                  />
-                </div>
+                <FieldDatePicker
+                  form={form}
+                  name="starts_at"
+                  label="Starts At"
+                  placeholder="Select start date"
+                />
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">
-                    Expires At
-                  </label>
-                  <input
-                    type="datetime-local"
-                    {...form.register("expires_at")}
-                    className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-                  />
-                </div>
+                <FieldDatePicker
+                  form={form}
+                  name="expires_at"
+                  label="Expires At"
+                  placeholder="Select expiry date"
+                />
               </div>
 
               <div className="pb-1">
