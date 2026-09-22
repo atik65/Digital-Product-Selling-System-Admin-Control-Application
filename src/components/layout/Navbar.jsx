@@ -90,6 +90,7 @@ const Navbar = () => {
     }
   };
 
+
   return (
     <nav className="bg-white border-b border-gray-200">
       <div className="mx-auto max-w-7xl px-6">

@@ -115,18 +115,18 @@ const navConfig = {
       url: "/settings",
       icon: Settings2,
     },
-    {
-      title: "Demo Starter View",
-      url: "/demo",
-      icon: Layout,
-    },
+    // {
+    //   title: "Demo Starter View",
+    //   url: "/demo",
+    //   icon: Layout,
+    // },
   ],
 };
 
 export function AppSidebar({ ...props }) {
   return (
     <Sidebar className="border-none" collapsible="icon" {...props}>
-      <SidebarHeader className="bg-[#0f6b47] text-white">
+      <SidebarHeader className="h-16 p-0 bg-[#0f6b47] text-white border-b border-[#0b5336] flex justify-center">
         <AppSidebarHeader intro={navConfig.intro} />
       </SidebarHeader>
 
@@ -138,9 +138,9 @@ export function AppSidebar({ ...props }) {
         <NavMain groupLabel="System" items={navConfig.system} />
       </SidebarContent>
 
-      <SidebarFooter className="border-r">
+      {/* <SidebarFooter className="border-r">
         <NavUser user={navConfig.user} />
-      </SidebarFooter>
+      </SidebarFooter> */}
 
       <SidebarRail />
     </Sidebar>
