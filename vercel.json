@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://api.subflixbd.com/api/:path*"
+    },
+    {
+      "source": "/uploads/:path*",
+      "destination": "https://api.subflixbd.com/uploads/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
