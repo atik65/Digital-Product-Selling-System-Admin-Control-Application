@@ -51,10 +51,15 @@ const FieldSelect = ({
           <FormItem>
             <div>
               {label && (
-                <FormLabel className="text-sm font-semibold text-gray-700 flex items-center gap-1 h-3 mb-1">
-                  {label}
+                <FormLabel className="text-sm font-semibold text-gray-700 flex items-center gap-0.5 h-5 leading-none">
+                  <span>{label}</span>
                   {required && (
-                    <span className="text-rose-500 text-base font-bold">*</span>
+                    <span
+                      className="text-destructive font-semibold text-sm leading-none ml-0.5"
+                      aria-hidden="true"
+                    >
+                      *
+                    </span>
                   )}
                 </FormLabel>
               )}

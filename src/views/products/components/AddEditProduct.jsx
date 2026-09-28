@@ -104,21 +104,21 @@ const AddEditProduct = ({ open, onClose, editData = null }) => {
 
   return (
     <Sheet open={open} onOpenChange={handleClose}>
-      <SheetContent className="sm:max-w-lg overflow-y-auto">
-        <SheetHeader>
-          <SheetTitle>
+      <SheetContent className="sm:max-w-xl overflow-y-auto">
+        <SheetHeader className="pb-4 border-b border-slate-100">
+          <SheetTitle className="text-base font-bold text-slate-900">
             {isEditMode ? "Edit Product" : "Create Digital Product"}
           </SheetTitle>
-          <SheetDescription>
+          <SheetDescription className="text-xs text-slate-500">
             {isEditMode
               ? "Update digital product details, category, and fulfillment instructions."
               : "Add a digital subscription, voucher, or game currency product to the catalog."}
           </SheetDescription>
         </SheetHeader>
 
-        <div className="mt-6 px-1">
+        <div className="mt-4 pb-8">
           <FormikWrapper form={form}>
-            <div className="space-y-4">
+            <div className="space-y-5">
               {/* Product Image */}
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-slate-700">

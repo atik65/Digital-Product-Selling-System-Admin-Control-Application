@@ -1,4 +1,7 @@
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import useProfile from "@/hooks/useProfile";
+import { getBreadcrumbs } from "@/lib/breadcrumbs";
 
 import Navbar from "./Navbar";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
@@ -39,7 +42,7 @@ const AdminLayout = ({ children }) => {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="sticky top-0 bg-background z-50 border-b flex h-16 shrink-0 items-center gap-2 transition-[width,height]  ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-16 ">
+        <header className="sticky top-0 bg-[#0f6b47] text-white z-50 border-b border-[#0b5336] flex h-16 shrink-0 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-16">
           <LayoutHeader />
         </header>
 
@@ -53,32 +56,48 @@ export default AdminLayout;
 
 const LayoutHeader = () => {
   const { userProfile, isLoadingProfile } = useProfile();
+  const location = useLocation();
 
   const handleLogout = async () => {
     await logout();
   };
 
+  const breadcrumbs = getBreadcrumbs(location.pathname);
+
   return (
-    <div className="flex items-center justify-between h-full gap-2 px-4 bg-[#0f6b47] text-white shadow-sm w-full">
+    <div className="flex items-center justify-between h-full gap-2 px-4 text-white w-full">
       <div className="flex items-center gap-2">
         <SidebarTrigger className="-ml-1 hover:bg-white/20 hover:text-white" />
         <Separator
           orientation="vertical"
-          className="mr-2 data-[orientation=vertical]:h-4"
+          className="mr-2 data-[orientation=vertical]:h-4 bg-white/20"
         />
         <Breadcrumb>
           <BreadcrumbList>
-            <BreadcrumbItem className="hidden md:block ">
-              <BreadcrumbLink className={"text-gray-400"} href="#">
-                Building Your Application
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator className="hidden md:block" />
-            <BreadcrumbItem>
-              <BreadcrumbPage className={"text-white"}>
-                Data Fetching
-              </BreadcrumbPage>
-            </BreadcrumbItem>
+            {breadcrumbs.map((crumb, index) => {
+              const isLast = index === breadcrumbs.length - 1;
+              return (
+                <React.Fragment key={crumb.href || index}>
+                  <BreadcrumbItem className={!isLast ? "hidden md:inline-flex" : ""}>
+                    {isLast ? (
+                      <BreadcrumbPage className="text-white font-medium">
+                        {crumb.label}
+                      </BreadcrumbPage>
+                    ) : (
+                      <BreadcrumbLink
+                        asChild
+                        className="text-white/70 hover:text-white transition-colors"
+                      >
+                        <Link to={crumb.href}>{crumb.label}</Link>
+                      </BreadcrumbLink>
+                    )}
+                  </BreadcrumbItem>
+                  {!isLast && (
+                    <BreadcrumbSeparator className="hidden md:inline-flex text-white/40" />
+                  )}
+                </React.Fragment>
+              );
+            })}
           </BreadcrumbList>
         </Breadcrumb>
       </div>

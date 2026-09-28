@@ -86,34 +86,20 @@ export function TeamSwitcher({ teams }) {
 
 export function AppSidebarHeader({ intro }) {
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <div
-          size="default"
-          isActive={false}
-          className=" data-[state=open]:bg-white/10 data-[state=open]:text-sidebar-accent-foreground hover:bg-white/10  hover:text-white border-b border-[#363D49] p-2 rounded-none   h-16 flex gap-3 items-center transition-[width,height,padding] cursor-pointer"
-        >
-          {/* <div className="bg-white/10 flex aspect-square size-8 items-center justify-center rounded-md"> */}
-          {/* <intro.logo className="size-4 " /> */}
-          {/* <Image src={"/logo.png"} /> */}
-          <div
-            className=" h-11 w-11 group-data-[collapsible=icon]:w-8
-          group-data-[collapsible=icon]:h-8  bg-[#8552FD] rounded-md flex justify-around items-center text-white font-bold "
-          >
-            MP
-          </div>
-          {/* </div> */}
-          <div className="group-data-[collapsible=icon]:hidden grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-bold text-base mb-1">
-              {intro?.title}
-            </span>
-            <span className="truncate text-xs text-[#9CA3AF]">
-              {intro.subtitle}
-            </span>
-          </div>
-          {/* <ChevronsUpDown className="ml-auto" /> */}
-        </div>
-      </SidebarMenuItem>
-    </SidebarMenu>
+    <div className="flex items-center gap-3 px-3 h-full w-full cursor-pointer hover:bg-white/10 transition-[width,height,padding] group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0">
+      <div className="h-10 w-10 shrink-0 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 bg-[#8552FD] rounded-md flex justify-center items-center text-white font-bold text-sm">
+        MP
+      </div>
+      <div className="group-data-[collapsible=icon]:hidden grid flex-1 text-left text-sm leading-tight">
+        <span className="truncate font-bold text-base">
+          {intro?.title}
+        </span>
+        {intro?.subtitle && (
+          <span className="truncate text-xs text-[#9CA3AF]">
+            {intro.subtitle}
+          </span>
+        )}
+      </div>
+    </div>
   );
 }
