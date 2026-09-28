@@ -1,6 +1,7 @@
 import { clearAuthCookies } from "./cookies";
 
 export default async function logout() {
+
   try {
     await fetch("/api/v1/auth/logout", {
       method: "POST",
