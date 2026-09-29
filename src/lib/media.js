@@ -1,6 +1,6 @@
 import axiosInstance from "./axiosInstance";
 
-const BACKEND_BASE = import.meta.env.VITE_MEDIA_BASE_URL || "http://localhost:8000";
+const BACKEND_BASE = import.meta.env.VITE_API_BASE_URL_DEV || "http://localhost:8000";
 
 /**
  * Returns full URL for a static media file path.

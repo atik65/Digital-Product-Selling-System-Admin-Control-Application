@@ -12,8 +12,8 @@ export default defineConfig(({ mode }) => {
   const proxyTarget =
     env.VITE_API_PROXY_TARGET ||
     (mode === "production"
-      ? env.VITE_API_BASE_URL_PROD
-      : env.VITE_API_BASE_URL_DEV) ||
+      ? env.VITE_API_PROXY_TARGET
+      : env.VITE_API_PROXY_TARGET) ||
     "http://localhost:8000";
 
   return {

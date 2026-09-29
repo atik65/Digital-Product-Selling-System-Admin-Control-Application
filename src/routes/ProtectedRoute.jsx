@@ -7,6 +7,7 @@ export default function ProtectedRoute() {
   const loggedIn = isAuthenticated();
   usePageTitle();
 
+
   return loggedIn ? (
     <AdminLayout>
       <Outlet />
