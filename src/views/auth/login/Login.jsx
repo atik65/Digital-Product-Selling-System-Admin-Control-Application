@@ -46,8 +46,8 @@ export default function Login() {
         isToast: false,
         handleDone: async (res) => {
           const authData = res?.data || res;
-          const accessToken = authData?.access_token;
-          const refreshToken = authData?.refresh_token;
+          // const accessToken = authData?.access_token;
+          // const refreshToken = authData?.refresh_token;
           const user = authData?.user;
 
           // Enforce admin RBAC on the client side as well
