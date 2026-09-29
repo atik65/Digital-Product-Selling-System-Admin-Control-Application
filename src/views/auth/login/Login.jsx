@@ -138,18 +138,18 @@ export default function Login() {
             <p className="text-xs text-slate-400 font-medium text-center uppercase tracking-wider">
               Test Credentials Quick-Fill
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-1 gap-2">
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 onClick={handleFillAdmin}
-                className="text-xs border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-lg justify-start"
+                className="text-xs border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-lg justify-cener"
               >
                 <ShieldCheck className="h-3.5 w-3.5 mr-1.5 shrink-0 text-emerald-600" />
-                <span>Super Admin</span>
+                <span>Auto Fill: Login as Admin</span>
               </Button>
-              <Button
+              {/* <Button
                 type="button"
                 variant="outline"
                 size="sm"
@@ -158,7 +158,7 @@ export default function Login() {
               >
                 <Users className="h-3.5 w-3.5 mr-1.5 shrink-0 text-slate-500" />
                 <span>Customer (403 Test)</span>
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

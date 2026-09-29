@@ -90,13 +90,13 @@ const AuthLayout = ({
           )} */}
 
           {/* Title & Subtitle */}
-          <div className="space-y-1">
-            <Text
+          <div className="space-y-1 mb-3">
+            {/* <Text
               component="h1"
               className="text-2xl font-bold tracking-tight text-neutral-900"
             >
               {title}
-            </Text>
+            </Text> */}
             <p className="text-xs sm:text-sm text-neutral-500 max-w-sm mx-auto leading-relaxed">
               {subtitle || siteTitle || "Administrator Console"}
             </p>
