@@ -3,6 +3,8 @@ import FormikWrapper from "@/components/common/Formik/FormikWrapper";
 import { Button } from "@/components/ui/button";
 import useFormik from "@/hooks/useFormik";
 import useRequest from "@/hooks/useRequest";
+import useApi from "@/hooks/useApi";
+import settingsApi from "@/views/settings/api";
 import { setAuthCookies } from "@/lib/cookies";
 import { useAuthState } from "@/state/useAuthState";
 import { ShieldCheck, UserCheck, Users, Loader2 } from "lucide-react";
@@ -16,6 +18,13 @@ export default function Login() {
   const navigate = useNavigate();
   const { mutateAsync } = useRequest();
   const setAuth = useAuthState((state) => state.setAuth);
+
+  const { data: settingsData, isLoading } = useApi({
+    api: settingsApi.get,
+    cacheKey: settingsApi.cacheKey,
+  });
+
+  const settings = settingsData?.data;
 
   const form = useFormik({
     schema: loginSchema.validation,
@@ -78,7 +87,13 @@ export default function Login() {
   return (
     <AuthLayout
       title="Admin Portal Sign In"
-      subtitle="Digital Product Selling System — Administrator Console"
+      subtitle={
+        settings?.site_title
+          ? `${settings?.site_name || "Digital Product Selling System"} — ${settings.site_title}`
+          : `${settings?.site_name || "Digital Product Selling System"} — Administrator Console`
+      }
+      settings={settings}
+      isLoading={isLoading}
     >
       <FormikWrapper form={form} className="space-y-6">
         <div className="space-y-4">
