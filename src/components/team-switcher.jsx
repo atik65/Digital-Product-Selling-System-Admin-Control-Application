@@ -20,6 +20,9 @@ import {
 } from "@/components/ui/sidebar";
 import Image from "./common/Image";
 import { Separator } from "@radix-ui/react-dropdown-menu";
+import useApi from "@/hooks/useApi";
+import settingsApi from "@/views/settings/api";
+import { getImageUrl } from "@/lib/media";
 
 export function TeamSwitcher({ teams }) {
   const { isMobile } = useSidebar();
@@ -85,20 +88,45 @@ export function TeamSwitcher({ teams }) {
 }
 
 export function AppSidebarHeader({ intro }) {
+  const { data: settingsData } = useApi({
+    api: settingsApi.get,
+    cacheKey: settingsApi.cacheKey,
+  });
+
+  const settings = settingsData?.data;
+  const title = settings?.site_name || intro?.title || "Digital Product Selling";
+  const subtitle = settings?.site_title || intro?.subtitle || "Admin Console";
+  const logoUrl = settings?.logo ? getImageUrl(settings.logo) : null;
+
   return (
     <div className="flex items-center gap-3 px-3 h-full w-full cursor-pointer hover:bg-white/10 transition-[width,height,padding] group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0">
-      <div className="h-10 w-10 shrink-0 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 bg-[#8552FD] rounded-md flex justify-center items-center text-white font-bold text-sm">
-        MP
+      <div className="h-10 w-10 shrink-0 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 bg-white rounded-lg flex justify-center items-center overflow-hidden p-1 shadow-2xs border border-white/20">
+        {logoUrl ? (
+          <img
+            src={logoUrl}
+            alt={title}
+            className="h-full w-full object-contain"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+              const fallback = e.currentTarget.parentElement?.querySelector(".logo-fallback");
+              if (fallback) fallback.style.display = "flex";
+            }}
+          />
+        ) : null}
+        <span
+          className="logo-fallback text-[#0f6b47] font-bold text-sm items-center justify-center"
+          style={{ display: logoUrl ? "none" : "flex" }}
+        >
+          {title?.slice(0, 2)?.toUpperCase() || "DP"}
+        </span>
       </div>
       <div className="group-data-[collapsible=icon]:hidden grid flex-1 text-left text-sm leading-tight">
-        <span className="truncate font-bold text-base">
-          {intro?.title}
+        <span className="truncate font-bold text-base text-white">
+          {title}
         </span>
-        {intro?.subtitle && (
-          <span className="truncate text-xs text-[#9CA3AF]">
-            {intro.subtitle}
-          </span>
-        )}
+        <span className="truncate text-xs text-emerald-100/80">
+          {subtitle}
+        </span>
       </div>
     </div>
   );
