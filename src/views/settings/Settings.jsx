@@ -149,7 +149,7 @@ const Settings = () => {
                 form={form}
                 name="site_name"
                 label="Site Brand Name"
-                placeholder="e.g., BoostGhor Digital"
+                placeholder="e.g., SubflixBD"
                 required
               />
 
@@ -258,7 +258,7 @@ const Settings = () => {
                 </label>
                 <input
                   {...form.register("telegram_url")}
-                  placeholder="e.g., https://t.me/boostghordigital"
+                  placeholder="e.g., https://t.me/subflixbd"
                   className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                 />
               </div>
@@ -270,7 +270,7 @@ const Settings = () => {
                 </label>
                 <input
                   {...form.register("facebook_url")}
-                  placeholder="e.g., https://facebook.com/boostghor"
+                  placeholder="e.g., https://facebook.com/subflixbd"
                   className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                 />
               </div>
@@ -294,7 +294,7 @@ const Settings = () => {
                 </label>
                 <input
                   {...form.register("support_email")}
-                  placeholder="e.g., support@boostghor.com"
+                  placeholder="e.g., support@subflixbd.com"
                   className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                 />
               </div>

@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { RouterProvider } from "react-router-dom";
 import QueryProvider from "./components/provider/QueryProvider";
 import ScrollToTop from "./components/common/ScrollToTop";
+import GlobalSettingsHandler from "./components/common/GlobalSettingsHandler";
 import { router } from "./routes";
 import { Toaster } from "./components/ui/sonner";
 import { ModalRenderer } from "./lib/easyModal";
@@ -10,6 +11,7 @@ function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <QueryProvider>
+        <GlobalSettingsHandler />
         <RouterProvider router={router} />
         <Toaster richColors position="bottom-right" />
         <ScrollToTop />

@@ -32,7 +32,7 @@ import {
 
 const navConfig = {
   intro: {
-    title: "BoostGhor Admin",
+    title: "SubflixBD Admin",
     logo: Store,
   },
   user: {
