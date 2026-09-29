@@ -15,6 +15,8 @@ import {
   Phone,
   Mail,
   ShieldCheck,
+  Headset,
+  Youtube,
 } from "lucide-react";
 import settingsApi from "./api";
 import { uploadMedia, getImageUrl } from "@/lib/media";
@@ -26,7 +28,9 @@ const settingsValidation = yup.object({
   site_title: yup.string().trim().required("Site title / tagline is required"),
   logo: yup.string().nullable().optional(),
   favicon: yup.string().nullable().optional(),
-  telegram_url: yup.string().nullable().optional(),
+  telegram_channel_url: yup.string().nullable().optional(),
+  telegram_support_url: yup.string().nullable().optional(),
+  youtube_channel_url: yup.string().nullable().optional(),
   facebook_url: yup.string().nullable().optional(),
   support_phone: yup.string().nullable().optional(),
   support_email: yup.string().email("Invalid email format").nullable().optional(),
@@ -47,7 +51,9 @@ const Settings = () => {
     site_title: "",
     logo: "",
     favicon: "",
-    telegram_url: "",
+    telegram_channel_url: "",
+    telegram_support_url: "",
+    youtube_channel_url: "",
     facebook_url: "",
     support_phone: "",
     support_email: "",
@@ -67,7 +73,12 @@ const Settings = () => {
         site_title: settingsData.data.site_title || "",
         logo: settingsData.data.logo || "",
         favicon: settingsData.data.favicon || "",
-        telegram_url: settingsData.data.telegram_url || "",
+        telegram_channel_url:
+          settingsData.data.telegram_channel_url ||
+          settingsData.data.telegram_url ||
+          "",
+        telegram_support_url: settingsData.data.telegram_support_url || "",
+        youtube_channel_url: settingsData.data.youtube_channel_url || "",
         facebook_url: settingsData.data.facebook_url || "",
         support_phone: settingsData.data.support_phone || "",
         support_email: settingsData.data.support_email || "",
@@ -257,7 +268,7 @@ const Settings = () => {
                   Official Telegram Channel / Group
                 </label>
                 <input
-                  {...form.register("telegram_url")}
+                  {...form.register("telegram_channel_url")}
                   placeholder="e.g., https://t.me/subflixbd"
                   className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                 />
@@ -265,8 +276,32 @@ const Settings = () => {
 
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                  <Headset className="h-3.5 w-3.5 text-sky-500" />
+                  Telegram Direct Support / Admin
+                </label>
+                <input
+                  {...form.register("telegram_support_url")}
+                  placeholder="e.g., https://t.me/subflixsupport"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                  <Youtube className="h-3.5 w-3.5 text-rose-600" />
+                  Official YouTube Channel URL
+                </label>
+                <input
+                  {...form.register("youtube_channel_url")}
+                  placeholder="e.g., https://youtube.com/@subflixbd"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
                   <Facebook className="h-3.5 w-3.5 text-indigo-600" />
-                  Facebook Page URL
+                  Official Facebook Page / Group
                 </label>
                 <input
                   {...form.register("facebook_url")}
@@ -278,7 +313,7 @@ const Settings = () => {
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
                   <Phone className="h-3.5 w-3.5 text-emerald-600" />
-                  WhatsApp / Hotline Support Phone
+                  Hotline Support Phone
                 </label>
                 <input
                   {...form.register("support_phone")}
