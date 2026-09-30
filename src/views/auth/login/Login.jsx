@@ -46,8 +46,8 @@ export default function Login() {
         isToast: false,
         handleDone: async (res) => {
           const authData = res?.data || res;
-          // const accessToken = authData?.access_token;
-          // const refreshToken = authData?.refresh_token;
+          const accessToken = authData?.access_token;
+          const refreshToken = authData?.refresh_token;
           const user = authData?.user;
 
           // Enforce admin RBAC on the client side as well
@@ -56,10 +56,12 @@ export default function Login() {
             return;
           }
 
-          // The server has issued HttpOnly cookies for access_token and refresh_token
-          setAuthCookies({ user });
+          // Persist authentication tokens, session indicator, and user profile
+          setAuthCookies({ accessToken, refreshToken, user });
           setAuth({
             user,
+            accessToken,
+            refreshToken,
             isAuthenticated: true,
           });
           toast.success("Welcome back, Admin!");

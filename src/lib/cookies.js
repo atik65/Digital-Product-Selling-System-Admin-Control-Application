@@ -31,17 +31,48 @@ export function removeCookie(name, options = {}) {
 
 // ==================== AUTH TOKEN HELPERS ====================
 
-// NOTE: access_token and refresh_token are stored as HttpOnly cookies by the HTTP server
-// response header (Set-Cookie). Client-side JavaScript cannot read or write them directly,
-// which prevents XSS token theft. The browser automatically attaches them to API requests
-// because withCredentials: true is configured.
+export const getAccessToken = () => {
+  if (typeof window === "undefined") return null;
+  return (
+    getCookie(ACCESS_TOKEN_KEY) ||
+    getCookie("auth_token") ||
+    localStorage.getItem("admin_access_token") ||
+    localStorage.getItem("access_token") ||
+    null
+  );
+};
 
-export const getAccessToken = () => getCookie(ACCESS_TOKEN_KEY);
-export const getRefreshToken = () => getCookie(REFRESH_TOKEN_KEY);
+export const getRefreshToken = () => {
+  if (typeof window === "undefined") return null;
+  return (
+    getCookie(REFRESH_TOKEN_KEY) ||
+    localStorage.getItem("admin_refresh_token") ||
+    localStorage.getItem("refresh_token") ||
+    null
+  );
+};
 
-export const setAuthCookies = ({ user } = {}) => {
-  // Client only sets the non-HttpOnly session flag so the router knows the user is logged in
+export const setAuthCookies = ({ accessToken, refreshToken, user } = {}) => {
+  // Session indicators
   setCookie(SIGNED_IN_KEY, "true", { expires: 7 });
+  setCookie("isSignedIn", "true", { expires: 7 });
+
+  if (accessToken) {
+    setCookie(ACCESS_TOKEN_KEY, accessToken, { expires: 1 / 24 });
+    setCookie("auth_token", accessToken, { expires: 1 / 24 });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("access_token", accessToken);
+      localStorage.setItem("admin_access_token", accessToken);
+    }
+  }
+
+  if (refreshToken) {
+    setCookie(REFRESH_TOKEN_KEY, refreshToken, { expires: 7 });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("refresh_token", refreshToken);
+      localStorage.setItem("admin_refresh_token", refreshToken);
+    }
+  }
 
   if (user) {
     try {
@@ -64,14 +95,27 @@ export const getStoredUser = () => {
 
 export const clearAuthCookies = () => {
   removeCookie(SIGNED_IN_KEY);
+  removeCookie("isSignedIn");
   removeCookie(ACCESS_TOKEN_KEY);
   removeCookie(REFRESH_TOKEN_KEY);
+  removeCookie("auth_token");
   if (typeof window !== "undefined") {
     localStorage.removeItem(USER_KEY);
+    localStorage.removeItem("admin_user");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("admin_access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("admin_refresh_token");
     localStorage.removeItem("deskSession");
   }
 };
 
 export const isAuthenticated = () => {
-  return getCookie(SIGNED_IN_KEY) === "true";
+  if (typeof window === "undefined") return false;
+  return (
+    getCookie(SIGNED_IN_KEY) === "true" ||
+    getCookie("isSignedIn") === "true" ||
+    !!getAccessToken() ||
+    !!getStoredUser()
+  );
 };

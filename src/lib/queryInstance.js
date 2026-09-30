@@ -3,7 +3,18 @@ import debounce from "./debounce";
 import logout from "./logout";
 
 const handleUnauthorized = async () => {
-  await logout();
+  if (typeof window !== "undefined" && window.location.pathname !== "/login") {
+    await logout();
+  }
+};
+
+const isAuthRequest = (error) => {
+  const url = error?.config?.url || "";
+  return (
+    url.includes("/auth/admin/login") ||
+    url.includes("/auth/login") ||
+    url.includes("/auth/refresh")
+  );
 };
 
 const queryClientInstance = new QueryClient({
@@ -20,8 +31,9 @@ const queryClientInstance = new QueryClient({
   queryCache: new QueryCache({
     onError: (error) => {
       if (
-        error?.response?.status === 401 ||
-        error?.response?.data?.code === 401
+        (error?.response?.status === 401 ||
+          error?.response?.data?.code === 401) &&
+        !isAuthRequest(error)
       ) {
         handleUnauthorized();
       }
@@ -30,8 +42,9 @@ const queryClientInstance = new QueryClient({
   mutationCache: new MutationCache({
     onError: (error) => {
       if (
-        error?.response?.status === 401 ||
-        error?.response?.data?.code === 401
+        (error?.response?.status === 401 ||
+          error?.response?.data?.code === 401) &&
+        !isAuthRequest(error)
       ) {
         handleUnauthorized();
       }

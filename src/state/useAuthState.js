@@ -17,7 +17,7 @@ export const useAuthState = create((set) => ({
     setAuthCookies({ accessToken, refreshToken, user });
     set({
       user,
-      token: accessToken,
+      token: accessToken || getAccessToken(),
       isAuthenticated: true,
       isLoading: false,
     });
