@@ -1,11 +1,91 @@
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { formatDate } from "@/lib/formatters";
-import { MessageSquare, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  MessageSquare,
+  CheckCircle2,
+  AlertCircle,
+  ChevronDown,
+  ChevronUp,
+  Copy,
+  Check,
+} from "lucide-react";
+import { toast } from "sonner";
+
+/**
+ * ExpandableMessage - Compact monospace payload viewer with expand/collapse and quick-copy.
+ */
+export const ExpandableMessage = ({ message, maxLength = 85 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const rawText = message || "";
+
+  if (!rawText) {
+    return <span className="text-xs text-slate-400 font-mono">-</span>;
+  }
+
+  const isLong = rawText.length > maxLength;
+  const displayText =
+    isLong && !isExpanded ? `${rawText.slice(0, maxLength).trim()}...` : rawText;
+
+  const handleCopy = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(rawText);
+    setCopied(true);
+    toast.success("SMS payload copied");
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <div className="group/msg relative rounded-lg border border-slate-200/80 bg-slate-50/90 p-2.5 text-left transition-all hover:bg-slate-100/70 hover:border-slate-300 max-w-xl w-full">
+      <div className="flex items-start justify-between gap-2">
+        <p className="flex-1 font-mono text-xs text-slate-700 whitespace-normal break-words break-all leading-relaxed select-text">
+          {displayText}
+        </p>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="shrink-0 rounded p-1 text-slate-400 hover:bg-white hover:text-slate-700 transition shadow-2xs"
+          title="Copy full message"
+        >
+          {copied ? (
+            <Check className="h-3.5 w-3.5 text-emerald-600" />
+          ) : (
+            <Copy className="h-3.5 w-3.5" />
+          )}
+        </button>
+      </div>
+
+      {isLong && (
+        <div className="mt-2 flex items-center justify-between border-t border-slate-200/70 pt-1.5">
+          <button
+            type="button"
+            onClick={() => setIsExpanded((prev) => !prev)}
+            className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 hover:text-emerald-700 transition cursor-pointer select-none"
+          >
+            <span>{isExpanded ? "Collapse" : "Expand"}</span>
+            {isExpanded ? (
+              <ChevronUp className="h-3 w-3" />
+            ) : (
+              <ChevronDown className="h-3 w-3" />
+            )}
+          </button>
+          <span className="font-mono text-[10px] text-slate-400">
+            {rawText.length} chars
+          </span>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const smsColumns = [
   {
     header: "SENDER / PROVIDER",
     accessorKey: "sender",
+    classHeader: "w-[180px] min-w-[160px]",
+    classCell: "whitespace-nowrap align-top",
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
         <div className="h-8 w-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 shrink-0">
@@ -27,15 +107,17 @@ export const smsColumns = [
   {
     header: "SMS MESSAGE PAYLOAD",
     accessorKey: "message",
+    classHeader: "min-w-[280px]",
+    classCell: "whitespace-normal min-w-[280px] max-w-xl align-top",
     cell: ({ row }) => (
-      <p className="text-xs text-slate-700 font-mono bg-slate-50 p-2 rounded-lg border border-slate-100 max-w-xl break-all">
-        {row?.raw_message || "-"}
-      </p>
+      <ExpandableMessage message={row?.raw_message || row?.message} />
     ),
   },
   {
     header: "MATCH STATUS",
     accessorKey: "is_matched",
+    classHeader: "w-[140px] min-w-[130px]",
+    classCell: "whitespace-nowrap align-top",
     cell: ({ row }) => {
       const isMatched = row.is_matched;
       return (
@@ -65,6 +147,8 @@ export const smsColumns = [
   {
     header: "RECEIVED AT",
     accessorKey: "created_at",
+    classHeader: "w-[170px] min-w-[150px]",
+    classCell: "whitespace-nowrap align-top",
     cell: ({ row }) => (
       <span className="text-xs text-slate-500">
         {formatDate(row.created_at || row.timestamp)}
