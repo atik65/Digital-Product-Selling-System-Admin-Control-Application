@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Eye, Coins, ChevronRight, User } from "lucide-react";
+import { Eye, Coins, ChevronRight, User, ShoppingBag, CreditCard } from "lucide-react";
 import { formatDate } from "@/lib/formatters";
 import { getImageUrl } from "@/lib/media";
 
@@ -8,6 +8,8 @@ const MobileUserCard = ({
   row,
   onClick,
   onAdjustBalance,
+  onOpenOrders,
+  onOpenTopups,
   onToggleStatus,
 }) => {
   const avatar = getImageUrl(row.image);
@@ -81,14 +83,37 @@ const MobileUserCard = ({
         </div>
 
         <div
-          className="flex items-center gap-1"
+          className="flex items-center gap-1 flex-wrap"
           onClick={(e) => e.stopPropagation()}
         >
           <Button
             variant="outline"
             size="sm"
+            className="h-7 text-xs px-2 gap-1 rounded-lg border-blue-200 text-blue-700 hover:bg-blue-50"
+            onClick={() => onOpenOrders && onOpenOrders(row)}
+            title="View Orders"
+          >
+            <ShoppingBag className="h-3 w-3" />
+            Orders
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-7 text-xs px-2 gap-1 rounded-lg border-purple-200 text-purple-700 hover:bg-purple-50"
+            onClick={() => onOpenTopups && onOpenTopups(row)}
+            title="View Top-ups"
+          >
+            <CreditCard className="h-3 w-3" />
+            Top-ups
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
             className="h-7 text-xs px-2 gap-1 rounded-lg border-amber-200 text-amber-700 hover:bg-amber-50"
             onClick={() => onAdjustBalance(row)}
+            title="Adjust Wallet"
           >
             <Coins className="h-3 w-3" />
             Wallet
@@ -99,6 +124,7 @@ const MobileUserCard = ({
             size="sm"
             className="h-7 w-7 p-0 text-slate-400 hover:text-slate-700 rounded-lg"
             onClick={() => onClick(row)}
+            title="Inspect Details"
           >
             <ChevronRight className="h-4 w-4" />
           </Button>

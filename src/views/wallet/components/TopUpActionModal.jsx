@@ -13,7 +13,10 @@ import walletApi from "../api";
 import { Loader2, CheckCircle, XCircle } from "lucide-react";
 import { formatPrice } from "@/lib/formatters";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 const TopUpActionModal = ({ open, onClose, topup, actionType = "APPROVE" }) => {
+  const queryClient = useQueryClient();
   const [adminNote, setAdminNote] = useState("");
   const { mutateAsync, isPending } = useRequest();
   const isApprove = actionType === "APPROVE";
@@ -36,6 +39,11 @@ const TopUpActionModal = ({ open, onClose, topup, actionType = "APPROVE" }) => {
         api: apiEndpoint,
         cacheKey: walletApi.cacheKey,
         handleDone: () => {
+          if (topup?.user_id) {
+            queryClient.invalidateQueries({ queryKey: [`userDetail-${topup.user_id}`] });
+          }
+          queryClient.invalidateQueries({ queryKey: ["adminUsers"] });
+          queryClient.invalidateQueries({ queryKey: [walletApi.cacheKey] });
           onClose();
         },
       });

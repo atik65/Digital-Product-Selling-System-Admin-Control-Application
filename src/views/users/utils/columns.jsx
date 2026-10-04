@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Eye, Coins, UserCheck, UserX, User } from "lucide-react";
+import { Eye, Coins, UserCheck, UserX, User, ShoppingBag, CreditCard } from "lucide-react";
 import { formatDate } from "@/lib/formatters";
 import { getImageUrl } from "@/lib/media";
 
@@ -121,7 +121,7 @@ export const userColumns = [
           title="View Profile Details"
         >
           <Eye className="h-3.5 w-3.5" />
-          <span className="hidden lg:inline">Inspect</span>
+          <span className="hidden xl:inline">Inspect</span>
         </Button>
 
         <Button
@@ -132,7 +132,29 @@ export const userColumns = [
           title="Adjust Customer Wallet Balance"
         >
           <Coins className="h-3.5 w-3.5" />
-          <span className="hidden lg:inline">Wallet</span>
+          <span className="hidden xl:inline">Wallet</span>
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 h-8 px-2 rounded-lg gap-1 text-xs font-medium"
+          onClick={() => logics.handleOpenOrdersDrawer(row)}
+          title="View Customer Orders"
+        >
+          <ShoppingBag className="h-3.5 w-3.5" />
+          <span className="hidden xl:inline">Orders</span>
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 h-8 px-2 rounded-lg gap-1 text-xs font-medium"
+          onClick={() => logics.handleOpenTopupsDrawer(row)}
+          title="View Customer Top-ups"
+        >
+          <CreditCard className="h-3.5 w-3.5" />
+          <span className="hidden xl:inline">Top-ups</span>
         </Button>
       </div>
     ),

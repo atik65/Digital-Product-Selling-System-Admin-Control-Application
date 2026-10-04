@@ -10,8 +10,11 @@ import useRequest from "@/hooks/useRequest";
 import userApi from "./api";
 import { userColumns } from "./utils/columns";
 import UserDetailDrawer from "./components/UserDetailDrawer";
+import UserOrdersDrawer from "./components/UserOrdersDrawer";
+import UserTopUpsDrawer from "./components/UserTopUpsDrawer";
 import MobileUserCard from "./components/MobileUserCard";
 import WalletAdjustModal from "@/views/wallet/components/WalletAdjustModal";
+import TopUpActionModal from "@/views/wallet/components/TopUpActionModal";
 
 const statusFilterOptions = [
   { id: "", label: "All Users" },
@@ -29,7 +32,17 @@ const UsersList = () => {
   // Drawer and Modal states
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+
+  const [isOrdersDrawerOpen, setIsOrdersDrawerOpen] = useState(false);
+  const [ordersDrawerUser, setOrdersDrawerUser] = useState(null);
+
+  const [isTopupsDrawerOpen, setIsTopupsDrawerOpen] = useState(false);
+  const [topupsDrawerUser, setTopupsDrawerUser] = useState(null);
+
   const [adjustModalUser, setAdjustModalUser] = useState(null);
+
+  const [actionTopup, setActionTopup] = useState(null);
+  const [actionType, setActionType] = useState("APPROVE");
 
   const { mutateAsync } = useRequest();
 
@@ -43,8 +56,33 @@ const UsersList = () => {
     setSelectedUser(null);
   };
 
+  const handleOpenOrdersDrawer = (user) => {
+    setOrdersDrawerUser(user);
+    setIsOrdersDrawerOpen(true);
+  };
+
+  const handleCloseOrdersDrawer = () => {
+    setIsOrdersDrawerOpen(false);
+    setOrdersDrawerUser(null);
+  };
+
+  const handleOpenTopupsDrawer = (user) => {
+    setTopupsDrawerUser(user);
+    setIsTopupsDrawerOpen(true);
+  };
+
+  const handleCloseTopupsDrawer = () => {
+    setIsTopupsDrawerOpen(false);
+    setTopupsDrawerUser(null);
+  };
+
   const handleOpenAdjustModal = (user) => {
     setAdjustModalUser(user);
+  };
+
+  const handleOpenTopupActionModal = (topup, type) => {
+    setActionTopup(topup);
+    setActionType(type);
   };
 
   const handleToggleStatus = async (user) => {
@@ -79,6 +117,24 @@ const UsersList = () => {
         onClose={handleCloseDrawer}
         user={selectedUser}
         onAdjustBalance={handleOpenAdjustModal}
+        onOpenOrders={handleOpenOrdersDrawer}
+        onOpenTopups={handleOpenTopupsDrawer}
+      />
+
+      {/* User Orders Drawer */}
+      <UserOrdersDrawer
+        open={isOrdersDrawerOpen}
+        onClose={handleCloseOrdersDrawer}
+        user={ordersDrawerUser}
+      />
+
+      {/* User Top-Ups Drawer */}
+      <UserTopUpsDrawer
+        open={isTopupsDrawerOpen}
+        onClose={handleCloseTopupsDrawer}
+        user={topupsDrawerUser}
+        onAdjustBalance={handleOpenAdjustModal}
+        onAction={handleOpenTopupActionModal}
       />
 
       {/* Wallet Balance Adjust Modal */}
@@ -86,6 +142,14 @@ const UsersList = () => {
         open={!!adjustModalUser}
         onClose={() => setAdjustModalUser(null)}
         user={adjustModalUser}
+      />
+
+      {/* Top-Up Review Action Modal */}
+      <TopUpActionModal
+        open={!!actionTopup}
+        onClose={() => setActionTopup(null)}
+        topup={actionTopup}
+        actionType={actionType}
       />
 
       <section className="space-y-6">
@@ -97,6 +161,8 @@ const UsersList = () => {
           logics={{
             handleOpenDrawer,
             handleOpenAdjustModal,
+            handleOpenOrdersDrawer,
+            handleOpenTopupsDrawer,
             handleToggleStatus,
           }}
           mobileCardRender={({ row }) => (
@@ -105,6 +171,8 @@ const UsersList = () => {
               row={row}
               onClick={handleOpenDrawer}
               onAdjustBalance={handleOpenAdjustModal}
+              onOpenOrders={handleOpenOrdersDrawer}
+              onOpenTopups={handleOpenTopupsDrawer}
               onToggleStatus={handleToggleStatus}
             />
           )}

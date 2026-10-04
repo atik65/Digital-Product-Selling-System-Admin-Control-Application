@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -9,15 +9,38 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import useRequest from "@/hooks/useRequest";
+import useApi from "@/hooks/useApi";
+import { useQueryClient } from "@tanstack/react-query";
 import walletApi from "../api";
+import userApi from "@/views/users/api";
 import { Loader2, Coins, ArrowUpRight, ArrowDownLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { formatPrice } from "@/lib/formatters";
 
 const WalletAdjustModal = ({ open, onClose, user }) => {
+  const queryClient = useQueryClient();
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("CREDIT");
   const [description, setDescription] = useState("");
   const { mutateAsync, isPending } = useRequest();
+
+  const { data: detailData, isLoading: isFetchingUser } = useApi({
+    api: user?.id ? userApi.show(user.id) : null,
+    cacheKey: `userDetail-${user?.id}`,
+    trigger: !!user?.id && open,
+  });
+
+  const userData = detailData?.data || user;
+  const currentBalance = userData?.wallet?.balance ?? userData?.wallet_balance ?? 0;
+  const currency = userData?.wallet?.currency || "BDT";
+
+  useEffect(() => {
+    if (open) {
+      setAmount("");
+      setDescription("");
+      setType("CREDIT");
+    }
+  }, [open, user?.id]);
 
   const handleSubmit = async () => {
     if (!user?.id || !amount || Number(amount) <= 0 || !description.trim()) return;
@@ -33,6 +56,9 @@ const WalletAdjustModal = ({ open, onClose, user }) => {
         api: walletApi.adjustBalance(user.id),
         cacheKey: "adminUsers",
         handleDone: () => {
+          queryClient.invalidateQueries({ queryKey: [`userDetail-${user.id}`] });
+          queryClient.invalidateQueries({ queryKey: ["adminUsers"] });
+          queryClient.invalidateQueries({ queryKey: ["adminTopups"] });
           onClose();
           setAmount("");
           setDescription("");
@@ -58,13 +84,38 @@ const WalletAdjustModal = ({ open, onClose, user }) => {
                 Adjust Customer Wallet
               </DialogTitle>
               <DialogDescription className="text-xs text-slate-500">
-                {user.email || user.username || `User #${user.id}`}
+                {userData.email || userData.username || `User #${userData.id}`}
               </DialogDescription>
             </div>
           </div>
         </DialogHeader>
 
         <div className="py-2 space-y-3">
+          {/* Current Wallet Balance Card */}
+          <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-2xl p-3.5 flex items-center justify-between">
+            <div>
+              <span className="text-[11px] text-emerald-700 font-semibold block">
+                Current Wallet Balance
+              </span>
+              <span className="text-xl font-extrabold text-emerald-800 flex items-center gap-1.5">
+                {isFetchingUser && !detailData ? (
+                  <span className="inline-flex items-center gap-1.5 text-xs font-normal text-emerald-600">
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" /> Fetching balance...
+                  </span>
+                ) : (
+                  formatPrice(currentBalance)
+                )}
+              </span>
+            </div>
+            <div className="text-right">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">
+                Currency
+              </span>
+              <span className="text-xs font-mono font-bold text-slate-700">
+                {currency}
+              </span>
+            </div>
+          </div>
           {/* Credit or Debit Type Toggle */}
           <div className="grid grid-cols-2 gap-2">
             <button

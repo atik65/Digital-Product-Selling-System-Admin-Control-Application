@@ -19,13 +19,21 @@ import {
   CheckCircle2,
   XCircle,
   ShoppingBag,
+  CreditCard,
 } from "lucide-react";
 import useApi from "@/hooks/useApi";
 import userApi from "../api";
 import { formatDate, formatPrice } from "@/lib/formatters";
 import { getImageUrl } from "@/lib/media";
 
-const UserDetailDrawer = ({ open, onClose, user, onAdjustBalance }) => {
+const UserDetailDrawer = ({
+  open,
+  onClose,
+  user,
+  onAdjustBalance,
+  onOpenOrders,
+  onOpenTopups,
+}) => {
   const { data: detailData, isLoading } = useApi({
     api: user?.id ? userApi.show(user.id) : null,
     cacheKey: `userDetail-${user?.id}`,
@@ -107,6 +115,51 @@ const UserDetailDrawer = ({ open, onClose, user, onAdjustBalance }) => {
                 </Button>
               </div>
             )}
+
+            {/* Orders & Top-Ups Quick Jump */}
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  onOpenOrders && onOpenOrders(userData);
+                }}
+                className="flex items-center justify-between p-3 rounded-2xl bg-blue-50/70 border border-blue-200/80 hover:bg-blue-100/70 transition-all text-left group cursor-pointer"
+              >
+                <div>
+                  <span className="text-[11px] text-blue-700 font-semibold block">
+                    Orders Placed
+                  </span>
+                  <span className="text-lg font-extrabold text-blue-950">
+                    {userData.total_orders ?? userData.orders?.length ?? 0}
+                  </span>
+                </div>
+                <div className="h-8 w-8 rounded-xl bg-white border border-blue-200 flex items-center justify-center text-blue-600 group-hover:scale-105 transition-transform shadow-2xs">
+                  <ShoppingBag className="h-4 w-4" />
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  onOpenTopups && onOpenTopups(userData);
+                }}
+                className="flex items-center justify-between p-3 rounded-2xl bg-purple-50/70 border border-purple-200/80 hover:bg-purple-100/70 transition-all text-left group cursor-pointer"
+              >
+                <div>
+                  <span className="text-[11px] text-purple-700 font-semibold block">
+                    Top-Up Requests
+                  </span>
+                  <span className="text-lg font-extrabold text-purple-950">
+                    {userData.topups?.length ?? 0}
+                  </span>
+                </div>
+                <div className="h-8 w-8 rounded-xl bg-white border border-purple-200 flex items-center justify-center text-purple-600 group-hover:scale-105 transition-transform shadow-2xs">
+                  <CreditCard className="h-4 w-4" />
+                </div>
+              </button>
+            </div>
 
             {/* Profile Fields */}
             <div className="divide-y divide-slate-100 border border-slate-100 rounded-2xl bg-white overflow-hidden">
