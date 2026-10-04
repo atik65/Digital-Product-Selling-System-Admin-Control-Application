@@ -28,6 +28,7 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 const navConfig = {
@@ -124,6 +125,8 @@ const navConfig = {
 };
 
 export function AppSidebar({ ...props }) {
+  const { isMobile, setOpenMobile } = useSidebar();
+
   return (
     <Sidebar className="border-none" collapsible="icon" {...props}>
       <SidebarHeader className="h-16 p-0 bg-[#0f6b47] text-white border-b border-[#0b5336] flex justify-center">
