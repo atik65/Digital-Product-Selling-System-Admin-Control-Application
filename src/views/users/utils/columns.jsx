@@ -110,6 +110,7 @@ export const userColumns = [
   {
     header: "ACTIONS",
     accessorKey: "actions",
+    classHeader: 'flex items-center justify-center',
     cell: ({ row, logics }) => (
       <div className="flex items-center justify-end gap-1">
         <Button
