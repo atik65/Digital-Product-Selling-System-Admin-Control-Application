@@ -15,7 +15,7 @@ import { toast } from "sonner";
 /**
  * ExpandableMessage - Compact monospace payload viewer with expand/collapse and quick-copy.
  */
-export const ExpandableMessage = ({ message, maxLength = 85 }) => {
+export const ExpandableMessage = ({ message, maxLength = 100 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -38,7 +38,7 @@ export const ExpandableMessage = ({ message, maxLength = 85 }) => {
   };
 
   return (
-    <div className="group/msg relative rounded-lg border border-slate-200/80 bg-slate-50/90 p-2.5 text-left transition-all hover:bg-slate-100/70 hover:border-slate-300 max-w-xl w-full">
+    <div className="group/msg relative rounded-lg border border-slate-200/80 bg-slate-50/90 p-2.5 text-left transition-all hover:bg-slate-100/70 hover:border-slate-300 max-w-5xl w-full">
       <div className="flex items-start justify-between gap-2">
         <p className="flex-1 font-mono text-xs text-slate-700 whitespace-normal break-words break-all leading-relaxed select-text">
           {displayText}
@@ -108,7 +108,7 @@ export const smsColumns = [
     header: "SMS MESSAGE PAYLOAD",
     accessorKey: "message",
     classHeader: "min-w-[280px]",
-    classCell: "whitespace-normal min-w-[280px] max-w-xl align-top",
+    classCell: "whitespace-normal min-w-[280px] max-w-5xl align-top",
     cell: ({ row }) => (
       <ExpandableMessage message={row?.raw_message || row?.message} />
     ),
