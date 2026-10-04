@@ -15,7 +15,7 @@ export const smsColumns = [
           <span className="font-semibold text-xs text-slate-900 font-mono">
             {row.sender || row.provider || "Android Gateway"}
           </span>
-          {row.sim_slot !== undefined && (
+          {row.sim_slot && (
             <span className="text-[10px] text-slate-400">
               SIM Slot #{row.sim_slot}
             </span>
@@ -29,7 +29,7 @@ export const smsColumns = [
     accessorKey: "message",
     cell: ({ row }) => (
       <p className="text-xs text-slate-700 font-mono bg-slate-50 p-2 rounded-lg border border-slate-100 max-w-xl break-all">
-        {row.message}
+        {row?.raw_message || "-"}
       </p>
     ),
   },
