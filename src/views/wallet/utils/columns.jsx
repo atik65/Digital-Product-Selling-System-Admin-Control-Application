@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { CheckCircle, XCircle, Copy, Check } from "lucide-react";
+import { CheckCircle, XCircle, Copy, Check, CreditCard } from "lucide-react";
 import { formatDate, formatPrice, getStatusBadge } from "@/lib/formatters";
+import { getImageUrl } from "@/lib/media";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -44,26 +45,110 @@ export const topupColumns = [
   },
   {
     header: "CUSTOMER",
-    accessorKey: "user_id",
-    cell: ({ row }) => (
-      <div className="flex flex-col text-xs">
-        <span className="font-semibold text-slate-900">
-          User #{row.user_id}
-        </span>
-        <span className="text-[11px] text-slate-500 font-mono">
-          Sender: {row.sender_number}
-        </span>
-      </div>
-    ),
+    accessorKey: "user",
+    cell: ({ row }) => {
+      const user = row.user;
+      const avatar = getImageUrl(user?.image);
+      const displayName =
+        user?.name ||
+        user?.username ||
+        (row.user_id ? `User #${row.user_id}` : "Customer");
+      const initials = (
+        (user?.name?.[0] || user?.username?.[0] || user?.email?.[0] || "U")
+      ).toUpperCase();
+
+      return (
+        <div className="flex items-center gap-2.5 min-w-[150px]">
+          <div className="h-8 w-8 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs flex items-center justify-center overflow-hidden shrink-0">
+            {avatar ? (
+              <img
+                src={avatar}
+                alt={displayName}
+                className="h-full w-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            ) : (
+              initials
+            )}
+          </div>
+          <div className="flex flex-col min-w-0">
+            <span
+              className="font-semibold text-xs text-slate-900 truncate"
+              title={displayName}
+            >
+              {displayName}
+            </span>
+            <span
+              className="text-[11px] text-slate-500 truncate"
+              title={user?.email || ""}
+            >
+              {user?.email ||
+                (user?.phone
+                  ? user.phone
+                  : row.user_id
+                  ? `ID: #${row.user_id}`
+                  : "")}
+            </span>
+          </div>
+        </div>
+      );
+    },
   },
   {
     header: "PAYMENT METHOD",
-    accessorKey: "payment_method_id",
-    cell: ({ row }) => (
-      <span className="text-xs font-medium text-slate-800">
-        Method #{row.payment_method_id}
-      </span>
-    ),
+    accessorKey: "payment_method",
+    cell: ({ row }) => {
+      const method = row.payment_method;
+      const logo = getImageUrl(method?.logo);
+      const methodName =
+        method?.name ||
+        (row.payment_method_id
+          ? `Method #${row.payment_method_id}`
+          : "Direct Transfer");
+
+      return (
+        <div className="flex items-center gap-2.5 min-w-[150px]">
+          <div className="h-8 w-8 rounded-lg bg-slate-100 border border-slate-200/90 flex items-center justify-center overflow-hidden shrink-0">
+            {logo ? (
+              <img
+                src={logo}
+                alt={methodName}
+                className="h-full w-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            ) : (
+              <CreditCard className="h-4 w-4 text-emerald-600" />
+            )}
+          </div>
+          <div className="flex flex-col min-w-0">
+            <span
+              className="font-semibold text-xs text-slate-800 truncate"
+              title={methodName}
+            >
+              {methodName}
+            </span>
+            <span
+              className="text-[11px] font-mono text-slate-500 truncate"
+              title={
+                row.sender_number && method?.account_number
+                  ? `Sender: ${row.sender_number} | Acct: ${method.account_number}`
+                  : undefined
+              }
+            >
+              {row.sender_number
+                ? `From: ${row.sender_number}`
+                : method?.account_number
+                ? `Acct: ${method.account_number}`
+                : "Direct Top-up"}
+            </span>
+          </div>
+        </div>
+      );
+    },
   },
   {
     header: "AMOUNT",

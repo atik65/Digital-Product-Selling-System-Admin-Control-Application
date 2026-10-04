@@ -87,10 +87,37 @@ const TopUpActionModal = ({ open, onClose, topup, actionType = "APPROVE" }) => {
 
         <div className="py-2 space-y-3">
           {/* Summary */}
-          <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100 text-xs space-y-1.5">
-            <div className="flex justify-between">
+          <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100 text-xs space-y-2">
+            <div className="flex items-center justify-between">
               <span className="text-slate-500">Customer:</span>
-              <span className="font-semibold text-slate-800">User #{topup.user_id}</span>
+              <div className="text-right">
+                <span className="font-semibold text-slate-800 block">
+                  {topup.user?.name ||
+                    topup.user?.username ||
+                    (topup.user_id ? `User #${topup.user_id}` : "Customer")}
+                </span>
+                {topup.user?.email && (
+                  <span className="text-[11px] text-slate-500 block">
+                    {topup.user.email}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-slate-500">Payment Gateway:</span>
+              <div className="text-right">
+                <span className="font-semibold text-slate-800 block">
+                  {topup.payment_method?.name ||
+                    (topup.payment_method_id
+                      ? `Method #${topup.payment_method_id}`
+                      : "Direct Transfer")}
+                </span>
+                {topup.payment_method?.account_number && (
+                  <span className="text-[11px] font-mono text-slate-500 block">
+                    Acct: {topup.payment_method.account_number}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-500">Transaction ID:</span>
@@ -98,12 +125,14 @@ const TopUpActionModal = ({ open, onClose, topup, actionType = "APPROVE" }) => {
                 {topup.transaction_id}
               </span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-slate-500">Sender Number:</span>
-              <span className="font-mono font-medium text-slate-800">
-                {topup.sender_number}
-              </span>
-            </div>
+            {topup.sender_number && (
+              <div className="flex justify-between">
+                <span className="text-slate-500">Sender Number:</span>
+                <span className="font-mono font-medium text-slate-800">
+                  {topup.sender_number}
+                </span>
+              </div>
+            )}
             <div className="flex justify-between pt-1 border-t border-slate-200 font-bold">
               <span>Credit Amount:</span>
               <span className="text-emerald-700 text-sm">{formatPrice(topup.amount)}</span>
