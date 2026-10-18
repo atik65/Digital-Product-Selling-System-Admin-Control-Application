@@ -4,6 +4,7 @@ import useTable from "@/components/common/table/hooks/useTable";
 import TableMaker from "@/components/common/table/TableMaker";
 import TableSearch from "@/components/common/table/TableSearch";
 import Select from "@/components/common/select/Select";
+import DatePicker from "@/components/common/DatePicker";
 import { History, SlidersHorizontal, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import paymentApi from "../api";
@@ -15,8 +16,7 @@ const typeOptions = [
   { id: "WALLET_TOPUP", label: "Wallet Top-Ups" },
 ];
 
-const dateInputClass =
-  "h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20";
+const dateInputClass = "w-full lg:w-[150px]";
 
 const TransactionsList = () => {
   const { searchParamsSyncParams, routerSyncParams } = useSyncParams();
@@ -114,24 +114,26 @@ const TransactionsList = () => {
                   />
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <input
-                    type="date"
+                  <DatePicker
                     aria-label="From date"
+                    placeholder="From date"
+                    displayFormat="dd MMM yyyy"
                     value={dateFrom}
                     max={dateTo || undefined}
-                    onChange={(e) =>
-                      routerSyncParams({ date_from: e.target.value, page: 1 })
+                    onChange={(value) =>
+                      routerSyncParams({ date_from: value, page: 1 })
                     }
                     className={dateInputClass}
                   />
                   <span className="text-xs text-slate-400">to</span>
-                  <input
-                    type="date"
+                  <DatePicker
                     aria-label="To date"
+                    placeholder="To date"
+                    displayFormat="dd MMM yyyy"
                     value={dateTo}
                     min={dateFrom || undefined}
-                    onChange={(e) =>
-                      routerSyncParams({ date_to: e.target.value, page: 1 })
+                    onChange={(value) =>
+                      routerSyncParams({ date_to: value, page: 1 })
                     }
                     className={dateInputClass}
                   />
