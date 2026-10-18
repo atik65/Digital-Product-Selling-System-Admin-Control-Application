@@ -67,7 +67,7 @@ const AdminNoteModal = ({ open, onClose, order }) => {
             rows={4}
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+            className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
             placeholder="e.g., Diamonds sent to UID 1829384920 via UniPin API at 14:35. Screenshot saved."
           />
           <p className="text-[11px] text-slate-400">
@@ -79,7 +79,7 @@ const AdminNoteModal = ({ open, onClose, order }) => {
           <Button
             onClick={handleSubmit}
             disabled={isPending}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-10 font-semibold"
+            className="flex-1 bg-brand-600 hover:bg-brand-700 text-white text-xs h-10 font-semibold"
           >
             {isPending ? (
               <>

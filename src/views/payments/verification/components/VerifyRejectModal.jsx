@@ -107,7 +107,7 @@ const VerifyRejectModal = ({
             </div>
             <div className="flex justify-between pt-1 border-t border-slate-200 font-bold">
               <span>Amount:</span>
-              <span className="text-emerald-700 text-sm">
+              <span className="text-brand-700 text-sm">
                 {formatPrice(payment.amount)}
               </span>
             </div>
@@ -122,7 +122,7 @@ const VerifyRejectModal = ({
               rows={3}
               value={adminNote}
               onChange={(e) => setAdminNote(e.target.value)}
-              className="w-full p-2.5 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="w-full p-2.5 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
               placeholder={
                 isVerify
                   ? "e.g., Verified against bKash merchant statement #4912"

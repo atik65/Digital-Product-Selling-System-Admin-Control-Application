@@ -132,7 +132,7 @@ const TopUpsList = () => {
                         className={cn(
                           "px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0",
                           isActive
-                            ? "bg-emerald-700 text-white shadow-xs font-semibold"
+                            ? "bg-brand-700 text-white shadow-xs font-semibold"
                             : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800"
                         )}
                       >

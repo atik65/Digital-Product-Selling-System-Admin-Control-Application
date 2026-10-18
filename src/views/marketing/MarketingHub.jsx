@@ -31,7 +31,7 @@ const MarketingHub = () => {
                   : "text-slate-600 hover:text-slate-900"
               )}
             >
-              <ImageIcon className="h-3.5 w-3.5 text-emerald-600" />
+              <ImageIcon className="h-3.5 w-3.5 text-brand-600" />
               <span>Hero Banners</span>
             </button>
 

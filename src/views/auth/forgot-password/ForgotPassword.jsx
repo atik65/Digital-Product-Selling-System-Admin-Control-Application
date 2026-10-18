@@ -63,13 +63,13 @@ export default function ForgotPassword() {
           <div className="flex flex-col items-center justify-between text-sm text-muted-foreground">
             <Link
               to="/login"
-              className="font-medium text-emerald-700 hover:underline dark:text-emerald-200"
+              className="font-medium text-brand-700 hover:underline dark:text-brand-200"
             >
               Back to sign in
             </Link>
             <Link
               to="/register"
-              className="font-medium text-emerald-700 hover:underline dark:text-emerald-200"
+              className="font-medium text-brand-700 hover:underline dark:text-brand-200"
             >
               Request access
             </Link>

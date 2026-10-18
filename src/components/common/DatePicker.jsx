@@ -67,7 +67,7 @@ const DatePicker = ({
             disabled={disabled}
             className={cn(
               "relative h-10 px-3 w-full justify-start text-left font-normal border border-slate-200 rounded-xl text-xs bg-white text-slate-800 transition-all duration-200 cursor-pointer shadow-none",
-              "focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20",
+              "focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20",
               "hover:bg-slate-50 hover:border-slate-300",
               !selectedDate && "text-slate-400",
               disabled && "opacity-50 cursor-not-allowed bg-slate-50",

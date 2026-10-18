@@ -130,16 +130,16 @@ const UserOrdersDrawer = ({ open, onClose, user }) => {
           </div>
         </div>
 
-        <div className="p-3 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 flex items-center justify-between">
+        <div className="p-3 rounded-2xl bg-brand-50/70 border border-brand-200/80 flex items-center justify-between">
           <div>
-            <span className="text-[11px] text-emerald-700 font-medium block">
+            <span className="text-[11px] text-brand-700 font-medium block">
               Total Spent
             </span>
-            <span className="text-lg font-extrabold text-emerald-800">
+            <span className="text-lg font-extrabold text-brand-800">
               {formatPrice(totalSpent)}
             </span>
           </div>
-          <div className="h-9 w-9 rounded-xl bg-white border border-emerald-200/80 flex items-center justify-center text-emerald-600 shadow-2xs">
+          <div className="h-9 w-9 rounded-xl bg-white border border-brand-200/80 flex items-center justify-center text-brand-600 shadow-2xs">
             <ReceiptText className="h-4 w-4" />
           </div>
         </div>
@@ -232,7 +232,7 @@ const UserOrdersDrawer = ({ open, onClose, user }) => {
                           <h5 className="font-semibold text-xs text-slate-900">
                             {item.product_name}
                           </h5>
-                          <span className="text-[11px] text-emerald-700 font-medium">
+                          <span className="text-[11px] text-brand-700 font-medium">
                             {item.package_name} × {item.quantity}
                           </span>
                         </div>
@@ -296,7 +296,7 @@ const UserOrdersDrawer = ({ open, onClose, user }) => {
                   </div>
                   <div className="font-bold text-slate-900">
                     Total:{" "}
-                    <span className="text-emerald-700 text-sm font-extrabold">
+                    <span className="text-brand-700 text-sm font-extrabold">
                       {formatPrice(order.total_amount)}
                     </span>
                   </div>

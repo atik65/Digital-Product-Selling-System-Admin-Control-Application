@@ -76,7 +76,7 @@ const WalletAdjustModal = ({ open, onClose, user }) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center shrink-0">
+            <div className="h-8 w-8 rounded-lg bg-brand-50 border border-brand-200 text-brand-600 flex items-center justify-center shrink-0">
               <Coins className="h-4 w-4" />
             </div>
             <div>
@@ -92,14 +92,14 @@ const WalletAdjustModal = ({ open, onClose, user }) => {
 
         <div className="py-2 space-y-3">
           {/* Current Wallet Balance Card */}
-          <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-2xl p-3.5 flex items-center justify-between">
+          <div className="bg-brand-50/80 border border-brand-200/80 rounded-2xl p-3.5 flex items-center justify-between">
             <div>
-              <span className="text-[11px] text-emerald-700 font-semibold block">
+              <span className="text-[11px] text-brand-700 font-semibold block">
                 Current Wallet Balance
               </span>
-              <span className="text-xl font-extrabold text-emerald-800 flex items-center gap-1.5">
+              <span className="text-xl font-extrabold text-brand-800 flex items-center gap-1.5">
                 {isFetchingUser && !detailData ? (
-                  <span className="inline-flex items-center gap-1.5 text-xs font-normal text-emerald-600">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-normal text-brand-600">
                     <Loader2 className="h-3.5 w-3.5 animate-spin" /> Fetching balance...
                   </span>
                 ) : (
@@ -124,11 +124,11 @@ const WalletAdjustModal = ({ open, onClose, user }) => {
               className={cn(
                 "flex items-center justify-center gap-1.5 p-2.5 rounded-xl border text-xs font-semibold transition-all",
                 type === "CREDIT"
-                  ? "border-emerald-500 bg-emerald-50 text-emerald-700 shadow-xs"
+                  ? "border-brand-500 bg-brand-50 text-brand-700 shadow-xs"
                   : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
               )}
             >
-              <ArrowUpRight className="h-4 w-4 text-emerald-600" />
+              <ArrowUpRight className="h-4 w-4 text-brand-600" />
               <span>Credit (Add Funds)</span>
             </button>
 
@@ -157,7 +157,7 @@ const WalletAdjustModal = ({ open, onClose, user }) => {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="e.g., 500"
-              className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
             />
           </div>
 
@@ -170,7 +170,7 @@ const WalletAdjustModal = ({ open, onClose, user }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="e.g., Promotional welcome bonus, manual refund for Order #12"
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
             />
           </div>
         </div>
@@ -179,7 +179,7 @@ const WalletAdjustModal = ({ open, onClose, user }) => {
           <Button
             onClick={handleSubmit}
             disabled={isPending || !amount || !description.trim()}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-10 font-semibold"
+            className="flex-1 bg-brand-600 hover:bg-brand-700 text-white text-xs h-10 font-semibold"
           >
             {isPending ? (
               <>

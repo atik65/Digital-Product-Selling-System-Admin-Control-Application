@@ -177,7 +177,7 @@ const AddEditProduct = ({ open, onClose, editData = null }) => {
                 </label>
                 <select
                   {...form.register("category_id")}
-                  className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
                 >
                   <option value="">Select a Category</option>
                   {categories.map((c) => (
@@ -218,7 +218,7 @@ const AddEditProduct = ({ open, onClose, editData = null }) => {
                 <textarea
                   {...form.register("description")}
                   rows={2}
-                  className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
                   placeholder="Overview of this digital subscription or item"
                 />
               </div>
@@ -231,7 +231,7 @@ const AddEditProduct = ({ open, onClose, editData = null }) => {
                 <textarea
                   {...form.register("instructions")}
                   rows={2}
-                  className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
                   placeholder="e.g., Provide your in-game Player ID carefully. Delivery takes 10-30 mins."
                 />
               </div>
@@ -250,7 +250,7 @@ const AddEditProduct = ({ open, onClose, editData = null }) => {
                 <Button
                   type="submit"
                   disabled={isPending || isUploading}
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="flex-1 bg-brand-600 hover:bg-brand-700 text-white"
                 >
                   {isPending ? (
                     <>

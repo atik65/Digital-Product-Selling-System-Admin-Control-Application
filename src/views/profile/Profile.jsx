@@ -134,7 +134,7 @@ const Profile = () => {
                   src={userProfile?.avatar?.path}
                   alt={getUserName()}
                 />
-                <AvatarFallback className="bg-[#0f6b47] text-2xl font-bold text-white">
+                <AvatarFallback className="bg-brand-600 text-2xl font-bold text-white">
                   {getInitials()}
                 </AvatarFallback>
               </Avatar>
@@ -203,7 +203,7 @@ const Profile = () => {
 
                 <Badge
                   variant="outline"
-                  className="border-[#0f6b47] text-[#0f6b47]"
+                  className="border-brand-600 text-brand-700"
                 >
                   <Shield className="mr-1 h-3 w-3" />
                   {getUserTypeLabel(userProfile?.user_type)}

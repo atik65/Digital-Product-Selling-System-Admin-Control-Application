@@ -69,7 +69,7 @@ const MobilePaymentCard = ({ row, onAction }) => {
         </div>
         <div className="flex items-center justify-between pt-1 border-t border-slate-200 font-bold">
           <span>Amount:</span>
-          <span className="text-emerald-700">{formatPrice(row.amount)}</span>
+          <span className="text-brand-700">{formatPrice(row.amount)}</span>
         </div>
       </div>
 

@@ -142,7 +142,7 @@ export default function VerifyOtp() {
           <Button
             type="button"
             variant="outline"
-            className="w-full border-dashed border-emerald-200 text-emerald-700"
+            className="w-full border-dashed border-brand-200 text-brand-700"
             disabled={!canResend}
             onClick={handleResend}
           >
@@ -162,7 +162,7 @@ export default function VerifyOtp() {
           <div className="flex flex-col items-center justify-between text-sm text-muted-foreground">
             <Link
               to="/login"
-              className="font-medium text-emerald-700 hover:underline dark:text-emerald-200"
+              className="font-medium text-brand-700 hover:underline dark:text-brand-200"
             >
               Back to sign in
             </Link>

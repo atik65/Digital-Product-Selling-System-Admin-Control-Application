@@ -63,7 +63,7 @@ const PaymentMethodsList = () => {
                 </p>
               </div>
               <Button
-                className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs shrink-0 rounded-xl h-10 px-4 text-xs sm:text-sm font-medium"
+                className="bg-brand-600 hover:bg-brand-700 text-white shadow-xs shrink-0 rounded-xl h-10 px-4 text-xs sm:text-sm font-medium"
                 onClick={handleAdd}
               >
                 <Plus className="mr-1.5 h-4 w-4" />
@@ -84,7 +84,7 @@ const PaymentMethodsList = () => {
               </p>
               <Button
                 onClick={handleAdd}
-                className="mt-4 text-xs rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="mt-4 text-xs rounded-xl bg-brand-600 hover:bg-brand-700 text-white"
                 size="sm"
               >
                 <Plus className="mr-1.5 h-3.5 w-3.5" />

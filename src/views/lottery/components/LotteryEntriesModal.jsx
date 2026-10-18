@@ -60,7 +60,7 @@ const LotteryEntriesModal = ({ open, onClose, lottery }) => {
                   className="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-white text-xs"
                 >
                   <div className="flex items-center gap-2.5">
-                    <div className="h-8 w-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center">
                       <Gift className="h-4 w-4" />
                     </div>
                     <div>
@@ -75,7 +75,7 @@ const LotteryEntriesModal = ({ open, onClose, lottery }) => {
 
                   <div className="text-right">
                     {entry.prize ? (
-                      <span className="inline-flex items-center gap-1 font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px]">
+                      <span className="inline-flex items-center gap-1 font-bold text-brand-700 bg-brand-50 px-2 py-0.5 rounded text-[11px]">
                         <CheckCircle2 className="h-3 w-3" />
                         Won {entry.prize.discount_value} ({entry.prize.discount_type})
                       </span>

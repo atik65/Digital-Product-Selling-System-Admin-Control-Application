@@ -62,7 +62,7 @@ const UserDetailDrawer = ({
 
   const renderHeaderContent = (TitleComp, DescComp) => (
     <div className="flex items-center gap-3">
-      <div className="h-14 w-14 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-lg flex items-center justify-center overflow-hidden shrink-0">
+      <div className="h-14 w-14 rounded-full bg-brand-100 border border-brand-200 text-brand-800 font-bold text-lg flex items-center justify-center overflow-hidden shrink-0">
         {avatar ? (
           <img
             src={avatar}
@@ -100,18 +100,18 @@ const UserDetailDrawer = ({
     <div className="space-y-4 text-xs">
       {/* Wallet Balance Card */}
       {userData.wallet && (
-        <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-2xl p-4 flex items-center justify-between">
+        <div className="bg-brand-50/80 border border-brand-200/80 rounded-2xl p-4 flex items-center justify-between">
           <div>
-            <span className="text-[11px] text-emerald-700 font-semibold block">
+            <span className="text-[11px] text-brand-700 font-semibold block">
               Available Wallet Credits
             </span>
-            <span className="text-xl font-extrabold text-emerald-800">
+            <span className="text-xl font-extrabold text-brand-800">
               {formatPrice(userData.wallet.balance)}
             </span>
           </div>
           <Button
             size="sm"
-            className="bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold h-9"
+            className="bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-semibold h-9"
             onClick={() => {
               onClose();
               onAdjustBalance(userData);

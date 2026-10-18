@@ -77,7 +77,7 @@ const Header = ({ userProfile }) => {
 
 
   return (
-    <header className="bg-[#0f6b47] text-white shadow-sm">
+    <header className="bg-shell text-white shadow-sm">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 lg:px-0">
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15">

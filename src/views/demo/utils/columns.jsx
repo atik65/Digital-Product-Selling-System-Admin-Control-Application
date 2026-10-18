@@ -102,7 +102,7 @@ export const appointmentColumns = [
             <Button
               variant="ghost"
               size="sm"
-              className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 gap-1 h-8 px-2"
+              className="text-brand-600 hover:text-brand-700 hover:bg-brand-50 gap-1 h-8 px-2"
               onClick={() => logics.handleEdit(row)}
             >
               <span className="text-xs font-medium">Edit</span>

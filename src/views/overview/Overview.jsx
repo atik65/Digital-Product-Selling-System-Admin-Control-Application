@@ -60,7 +60,7 @@ const Overview = () => {
       title: "Today's Gross Sales",
       value: formatPrice(summary.today_sales),
       icon: TrendingUp,
-      accent: "text-emerald-700 bg-emerald-50 border-emerald-200/80",
+      accent: "text-brand-700 bg-brand-50 border-brand-200/80",
       link: "/orders",
       subtext: "Gross customer order payments today",
     },
@@ -199,7 +199,7 @@ const Overview = () => {
           <Link
             key={idx}
             to={item.link}
-            className="group bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-emerald-300 hover:shadow-sm transition-all relative overflow-hidden"
+            className="group bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-brand-300 hover:shadow-sm transition-all relative overflow-hidden"
           >
             <div className="flex items-start justify-between gap-2">
               <div>
@@ -223,7 +223,7 @@ const Overview = () => {
 
             <div className="flex items-center justify-between pt-3 mt-3 border-t border-slate-100 text-xs text-slate-400">
               <span className="truncate">{item.subtext}</span>
-              <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-emerald-600 transition-colors" />
+              <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-brand-600 transition-colors" />
             </div>
           </Link>
         ))}
@@ -235,14 +235,14 @@ const Overview = () => {
         <div className="lg:col-span-6 bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
-              <ShoppingBag className="h-4 w-4 text-emerald-600" />
+              <ShoppingBag className="h-4 w-4 text-brand-600" />
               <h3 className="font-bold text-sm text-slate-900">
                 Recent Customer Orders
               </h3>
             </div>
             <Link
               to="/orders"
-              className="text-xs font-semibold text-emerald-700 hover:text-emerald-800"
+              className="text-xs font-semibold text-brand-700 hover:text-brand-800"
             >
               View All
             </Link>
@@ -283,7 +283,7 @@ const Overview = () => {
                       </span>
                     </div>
 
-                    <span className="font-bold text-emerald-700">
+                    <span className="font-bold text-brand-700">
                       {formatPrice(ord.total_amount)}
                     </span>
                   </Link>
@@ -345,7 +345,7 @@ const Overview = () => {
                       </span>
                     </div>
 
-                    <span className="font-bold text-emerald-700">
+                    <span className="font-bold text-brand-700">
                       {formatPrice(pm.amount)}
                     </span>
                   </Link>

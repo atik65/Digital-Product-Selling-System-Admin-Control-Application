@@ -118,7 +118,7 @@ const Navbar = () => {
                   <ChevronDown className="h-4 w-4" />
                 )}
                 {(isActive(item.path) || isParentActive(item)) && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-600" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-600" />
                 )}
               </button>
 
@@ -140,7 +140,7 @@ const Navbar = () => {
                                 className={cn(
                                   "w-full text-left px-4 py-2 text-sm transition-colors hover:bg-gray-50",
                                   isActive(nestedItem.path)
-                                    ? "text-emerald-600 font-medium"
+                                    ? "text-brand-600 font-medium"
                                     : "text-gray-700"
                                 )}
                               >
@@ -158,7 +158,7 @@ const Navbar = () => {
                           className={cn(
                             "w-full text-left px-4 py-2 text-sm transition-colors hover:bg-gray-50",
                             isActive(subItem.path)
-                              ? "text-emerald-600 font-medium"
+                              ? "text-brand-600 font-medium"
                               : "text-gray-700"
                           )}
                         >
@@ -180,7 +180,7 @@ const Navbar = () => {
                           className={cn(
                             "w-full text-left px-4 py-2 text-sm transition-colors hover:bg-gray-50",
                             isActive(subItem.path)
-                              ? "text-emerald-600 font-medium"
+                              ? "text-brand-600 font-medium"
                               : "text-gray-700"
                           )}
                         >

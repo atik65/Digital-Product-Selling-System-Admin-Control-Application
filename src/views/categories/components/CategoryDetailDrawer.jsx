@@ -36,7 +36,7 @@ const CategoryDetailDrawer = ({ open, onClose, category, onEdit }) => {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <Folder className="h-7 w-7 text-emerald-600" />
+                  <Folder className="h-7 w-7 text-brand-600" />
                 )}
               </div>
               <div className="flex-1 min-w-0">
@@ -121,7 +121,7 @@ const CategoryDetailDrawer = ({ open, onClose, category, onEdit }) => {
 
           <DrawerFooter className="px-0 pt-4 flex-row gap-2">
             <Button
-              className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl h-11 text-xs font-semibold"
+              className="flex-1 bg-brand-600 hover:bg-brand-700 text-white rounded-xl h-11 text-xs font-semibold"
               onClick={() => {
                 onClose();
                 onEdit(category);

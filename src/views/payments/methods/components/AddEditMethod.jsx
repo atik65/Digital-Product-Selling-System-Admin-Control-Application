@@ -202,7 +202,7 @@ const AddEditMethod = ({ open, onClose, editData = null }) => {
                 <textarea
                   {...form.register("instructions")}
                   rows={3}
-                  className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                   placeholder="e.g., Send Money to this personal number and input TrxID below."
                 />
               </div>
@@ -256,7 +256,7 @@ const AddEditMethod = ({ open, onClose, editData = null }) => {
                 <Button
                   type="submit"
                   disabled={isPending || isUploading}
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="flex-1 bg-brand-600 hover:bg-brand-700 text-white"
                 >
                   {isPending ? (
                     <>

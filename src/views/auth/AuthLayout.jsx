@@ -47,7 +47,7 @@ const AuthLayout = ({
   return (
     <div
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center px-4 py-8 bg-slate-50/60 selection:bg-emerald-500 selection:text-white",
+        "relative flex min-h-screen flex-col items-center justify-center px-4 py-8 bg-slate-50/60 selection:bg-brand-500 selection:text-white",
         className
       )}
     >
@@ -56,7 +56,7 @@ const AuthLayout = ({
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:28px_28px]" />
 
       {/* Auth Card */}
-      <div className="relative z-10 w-full max-w-lg rounded-3xl bg-white p-6 sm:p-8 shadow-xl shadow-emerald-950/5 ring-1 ring-slate-900/10 transition-all">
+      <div className="relative z-10 w-full max-w-lg rounded-3xl bg-white p-6 sm:p-8 shadow-xl shadow-brand-950/5 ring-1 ring-slate-900/10 transition-all">
         {/* Brand & Logo Header */}
         <div className="flex flex-col items-center gap-3 text-center">
           <div className="flex items-center justify-center">
@@ -71,7 +71,7 @@ const AuthLayout = ({
                 }}
               />
             ) : (
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 ring-1 ring-emerald-200/80 shadow-xs">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 ring-1 ring-brand-200/80 shadow-xs">
                 <img
                   src="/logo.png"
                   alt={siteName}
@@ -83,8 +83,8 @@ const AuthLayout = ({
 
           {/* Project Name Badge */}
           {/* {siteName && (
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50/80 border border-emerald-200/60 text-emerald-800 text-xs font-semibold tracking-wide shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50/80 border border-brand-200/60 text-brand-800 text-xs font-semibold tracking-wide shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
               <span>{siteName}</span>
             </div>
           )} */}
@@ -123,17 +123,17 @@ const AuthLayout = ({
               {settings?.support_phone && (
                 <a
                   href={`tel:${settings.support_phone}`}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-emerald-50 hover:text-emerald-700 transition-colors border border-slate-200/60"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-brand-50 hover:text-brand-700 transition-colors border border-slate-200/60"
                   title="Support Helpline"
                 >
-                  <Phone className="h-3.5 w-3.5 text-emerald-600" />
+                  <Phone className="h-3.5 w-3.5 text-brand-600" />
                   <span>{settings.support_phone}</span>
                 </a>
               )}
               {settings?.support_email && (
                 <a
                   href={`mailto:${settings.support_email}`}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-emerald-50 hover:text-emerald-700 transition-colors border border-slate-200/60"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-brand-50 hover:text-brand-700 transition-colors border border-slate-200/60"
                   title="Support Email"
                 >
                   <Mail className="h-3.5 w-3.5 text-amber-600" />
@@ -171,7 +171,7 @@ const AuthLayout = ({
       {/* Footer Branding & Security Notice */}
       <div className="relative z-10 mt-6 text-center text-xs text-slate-400 space-y-1">
         <div className="flex items-center justify-center gap-1.5 text-slate-500 font-medium">
-          <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
+          <ShieldCheck className="h-3.5 w-3.5 text-brand-600" />
           <span>Secure Administrator Control Gateway</span>
         </div>
         <p>

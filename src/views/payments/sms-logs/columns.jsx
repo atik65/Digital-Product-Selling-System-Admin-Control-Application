@@ -62,7 +62,7 @@ export const ExpandableMessage = ({ message, maxLength = 100 }) => {
           <button
             type="button"
             onClick={() => setIsExpanded((prev) => !prev)}
-            className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 hover:text-emerald-700 transition cursor-pointer select-none"
+            className="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-600 hover:text-brand-700 transition cursor-pointer select-none"
           >
             <span>{isExpanded ? "Collapse" : "Expand"}</span>
             {isExpanded ? (

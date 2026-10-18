@@ -88,7 +88,7 @@ const AddEditCampaign = ({ open, onClose }) => {
                 <textarea
                   {...form.register("description")}
                   rows={3}
-                  className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                   placeholder="e.g., Every customer who places an order gets 1 free lucky spin!"
                 />
               </div>
@@ -121,7 +121,7 @@ const AddEditCampaign = ({ open, onClose }) => {
                 <Button
                   type="submit"
                   disabled={isPending}
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="flex-1 bg-brand-600 hover:bg-brand-700 text-white"
                 >
                   {isPending ? (
                     <>

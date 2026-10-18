@@ -22,7 +22,7 @@ const MobileProductCard = ({
   return (
     <div
       onClick={() => onClick && onClick(row)}
-      className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs hover:border-emerald-300 transition-all active:scale-[0.99] cursor-pointer space-y-3"
+      className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs hover:border-brand-300 transition-all active:scale-[0.99] cursor-pointer space-y-3"
     >
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
@@ -37,7 +37,7 @@ const MobileProductCard = ({
                 }}
               />
             ) : (
-              <Layers className="h-5 w-5 text-emerald-600" />
+              <Layers className="h-5 w-5 text-brand-600" />
             )}
           </div>
           <div className="min-w-0">
@@ -45,7 +45,7 @@ const MobileProductCard = ({
               {row.name}
             </h4>
             <div className="flex items-center gap-2 mt-0.5">
-              <span className="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200/60 px-1.5 py-0.2 rounded font-medium">
+              <span className="text-[10px] bg-brand-50 text-brand-700 border border-brand-200/60 px-1.5 py-0.2 rounded font-medium">
                 {row.category?.name || "Uncategorized"}
               </span>
               <code className="text-[10px] text-slate-400 font-mono truncate">
@@ -85,7 +85,7 @@ const MobileProductCard = ({
           <span>{pkgs.length} Tiers</span>
         </div>
         {lowestPrice !== null && (
-          <span className="font-bold text-emerald-600">
+          <span className="font-bold text-brand-600">
             Starts {formatPrice(lowestPrice)}
           </span>
         )}
@@ -121,7 +121,7 @@ const MobileProductCard = ({
           <Button
             variant="ghost"
             size="sm"
-            className="h-7 w-7 p-0 text-slate-600 hover:text-emerald-700 rounded-lg"
+            className="h-7 w-7 p-0 text-slate-600 hover:text-brand-700 rounded-lg"
             onClick={() => onEdit(row)}
           >
             <Edit className="h-3.5 w-3.5" />

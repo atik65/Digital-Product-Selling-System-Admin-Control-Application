@@ -55,7 +55,7 @@ const ProductDetailDrawer = ({
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <Layers className="h-7 w-7 text-emerald-600" />
+                  <Layers className="h-7 w-7 text-brand-600" />
                 )}
               </div>
               <div className="flex-1 min-w-0">
@@ -75,7 +75,7 @@ const ProductDetailDrawer = ({
                   </span>
                 </div>
                 <div className="flex items-center gap-2 mt-0.5 text-xs text-slate-500">
-                  <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                  <span className="font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">
                     {product.category?.name || "Uncategorized"}
                   </span>
                   <span className="font-mono">/{product.slug}</span>
@@ -151,7 +151,7 @@ const ProductDetailDrawer = ({
                       <span className="font-medium text-xs text-slate-800 block truncate">
                         {p.name}
                       </span>
-                      <span className="font-bold text-sm text-emerald-600">
+                      <span className="font-bold text-sm text-brand-600">
                         {formatPrice(p.price)}
                       </span>
                       {p.duration && (
@@ -191,7 +191,7 @@ const ProductDetailDrawer = ({
 
           <DrawerFooter className="px-0 pt-4 flex-row gap-2">
             <Button
-              className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl h-11 text-xs font-semibold"
+              className="flex-1 bg-brand-600 hover:bg-brand-700 text-white rounded-xl h-11 text-xs font-semibold"
               onClick={() => {
                 onClose();
                 onEdit(product);

@@ -59,8 +59,8 @@ const ChangePassword = () => {
             </Button>
           </div>
           <div className="flex items-center gap-3">
-            <div className="rounded-lg bg-[#0f6b47]/10 p-2.5">
-              <Lock className="h-5 w-5 text-[#0f6b47]" />
+            <div className="rounded-lg bg-brand-600/10 p-2.5">
+              <Lock className="h-5 w-5 text-brand-700" />
             </div>
             <div>
               <CardTitle>Change Password</CardTitle>
@@ -119,7 +119,7 @@ const ChangePassword = () => {
                 <Button
                   type="submit"
                   disabled={form.formState.isSubmitting}
-                  className="flex-1 bg-[#0f6b47] hover:bg-[#0f6b47]/90"
+                  className="flex-1 bg-brand-600 hover:bg-brand-700"
                 >
                   {form.formState.isSubmitting
                     ? "Updating Password..."

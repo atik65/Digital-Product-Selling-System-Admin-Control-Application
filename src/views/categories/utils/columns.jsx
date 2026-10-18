@@ -24,7 +24,7 @@ export const categoryColumns = [
                 }}
               />
             ) : (
-              <Folder className="h-5 w-5 text-emerald-600" />
+              <Folder className="h-5 w-5 text-brand-600" />
             )}
           </div>
           <div className="flex flex-col min-w-0">
@@ -102,7 +102,7 @@ export const categoryColumns = [
           <Button
             variant="ghost"
             size="sm"
-            className="text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 h-8 w-8 p-0 rounded-lg"
+            className="text-brand-700 hover:text-brand-800 hover:bg-brand-50 h-8 w-8 p-0 rounded-lg"
             onClick={() => logics.handleEdit(row)}
             title="Edit Category"
           >

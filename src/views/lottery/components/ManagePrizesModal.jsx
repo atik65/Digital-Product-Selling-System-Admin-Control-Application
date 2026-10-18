@@ -244,7 +244,7 @@ const ManagePrizesModal = ({ open, onClose, lottery }) => {
                     </div>
                   </div>
 
-                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
+                  <span className="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-lg">
                     {(p.probability * 100).toFixed(1)}% chance
                   </span>
                 </div>

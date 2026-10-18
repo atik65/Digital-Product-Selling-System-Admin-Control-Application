@@ -98,7 +98,7 @@ const AddEdit = ({ open, onClose, editData = null }) => {
                 <Button
                   type="submit"
                   disabled={isPending || !form.formState.isValid}
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700"
+                  className="flex-1 bg-brand-600 hover:bg-brand-700"
                 >
                   {isPending ? (
                     <>

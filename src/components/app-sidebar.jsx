@@ -135,7 +135,7 @@ export function AppSidebar({ ...props }) {
 
   return (
     <Sidebar className="border-none" collapsible="icon" {...props}>
-      <SidebarHeader className="h-16 p-0 bg-[#0f6b47] text-white border-b border-[#0b5336] flex justify-center">
+      <SidebarHeader className="h-16 p-0 bg-shell text-white border-b border-shell-border flex justify-center">
         <AppSidebarHeader intro={navConfig.intro} />
       </SidebarHeader>
 

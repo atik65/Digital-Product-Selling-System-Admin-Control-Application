@@ -69,7 +69,7 @@ export const UserNav = ({ userProfile, onLogout }) => {
                 src={avatarSrc}
                 alt={getUserName()}
               />
-              <AvatarFallback className="bg-[#0f6b47]/10 text-sm font-semibold text-[#0f6b47]">
+              <AvatarFallback className="bg-brand-600/10 text-sm font-semibold text-brand-700">
                 {getInitials()}
               </AvatarFallback>
             </Avatar>

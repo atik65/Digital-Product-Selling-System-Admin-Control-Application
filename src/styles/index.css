@@ -123,6 +123,24 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /* Brand accent (indigo). Swap these values to re-theme the whole panel.
+     Semantic colours (success/active green, destructive rose) stay separate. */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+  --color-brand-950: #1e1b4b;
+
+  /* App shell (top header / sidebar header) */
+  --color-shell: #0f172a;
+  --color-shell-border: #1e293b;
+
   /* ERP Colors */
   --color-erp-primary: #4f46e5;
   --color-erp-primary-dark: #4338ca;

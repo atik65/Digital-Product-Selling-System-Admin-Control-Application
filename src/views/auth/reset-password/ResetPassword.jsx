@@ -92,13 +92,13 @@ export default function ResetPassword() {
           <div className="flex items-center justify-between text-sm text-muted-foreground">
             <Link
               to="/login"
-              className="font-medium text-emerald-700 hover:underline dark:text-emerald-200"
+              className="font-medium text-brand-700 hover:underline dark:text-brand-200"
             >
               Return to sign in
             </Link>
             <Link
               to="/forgot-password"
-              className="font-medium text-emerald-700 hover:underline dark:text-emerald-200"
+              className="font-medium text-brand-700 hover:underline dark:text-brand-200"
             >
               Start over
             </Link>

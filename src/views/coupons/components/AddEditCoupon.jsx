@@ -98,7 +98,7 @@ const AddEditCoupon = ({ open, onClose, editData = null }) => {
                   </label>
                   <select
                     {...form.register("type")}
-                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                    className="w-full h-10 px-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                   >
                     {couponTypes.map((t) => (
                       <option key={t.id} value={t.id}>
@@ -189,7 +189,7 @@ const AddEditCoupon = ({ open, onClose, editData = null }) => {
                 <Button
                   type="submit"
                   disabled={isPending}
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="flex-1 bg-brand-600 hover:bg-brand-700 text-white"
                 >
                   {isPending ? (
                     <>

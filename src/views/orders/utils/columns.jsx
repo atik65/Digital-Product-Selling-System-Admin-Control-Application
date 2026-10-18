@@ -63,7 +63,7 @@ export const orderColumns = [
     accessorKey: "total_amount",
     cell: ({ row }) => (
       <div className="flex flex-col">
-        <span className="font-bold text-xs text-emerald-700">
+        <span className="font-bold text-xs text-brand-700">
           {formatPrice(row.total_amount)}
         </span>
         {row.discount > 0 && (
@@ -165,7 +165,7 @@ export const orderColumns = [
         <Button
           variant="ghost"
           size="sm"
-          className="text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 h-8 px-2 rounded-lg gap-1 text-xs font-medium"
+          className="text-brand-700 hover:text-brand-800 hover:bg-brand-50 h-8 px-2 rounded-lg gap-1 text-xs font-medium"
           onClick={() => logics.handleOpenDrawer(row)}
           title="View Order Details"
         >

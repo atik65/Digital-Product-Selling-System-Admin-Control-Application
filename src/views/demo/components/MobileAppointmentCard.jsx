@@ -84,11 +84,11 @@ const MobileAppointmentCard = ({ row, onClick, onEdit }) => {
       {/* Top row: Avatar, Name/Category, and Status Badge */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="h-11 w-11 shrink-0 rounded-full bg-linear-to-br from-emerald-500 to-teal-700 text-white font-semibold flex items-center justify-center text-sm shadow-xs ring-2 ring-emerald-100">
+          <div className="h-11 w-11 shrink-0 rounded-full bg-linear-to-br from-brand-500 to-brand-800 text-white font-semibold flex items-center justify-center text-sm shadow-xs ring-2 ring-brand-100">
             {initials}
           </div>
           <div className="min-w-0">
-            <h3 className="text-sm font-semibold text-slate-900 truncate group-hover:text-emerald-700 transition-colors">
+            <h3 className="text-sm font-semibold text-slate-900 truncate group-hover:text-brand-700 transition-colors">
               {fullName}
             </h3>
             <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5 truncate">
@@ -147,7 +147,7 @@ const MobileAppointmentCard = ({ row, onClick, onEdit }) => {
             variant="ghost"
             size="sm"
             onClick={handleEditClick}
-            className="h-7 px-2 text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 text-xs font-medium rounded-lg"
+            className="h-7 px-2 text-slate-600 hover:text-brand-700 hover:bg-brand-50 text-xs font-medium rounded-lg"
           >
             <Edit className="h-3 w-3 mr-1" />
             Edit
@@ -161,7 +161,7 @@ const MobileAppointmentCard = ({ row, onClick, onEdit }) => {
               e.stopPropagation();
               if (onClick) onClick(row);
             }}
-            className="h-7 px-2.5 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 text-xs font-medium rounded-lg"
+            className="h-7 px-2.5 text-brand-700 bg-brand-50 hover:bg-brand-100 text-xs font-medium rounded-lg"
           >
             <Eye className="h-3 w-3 mr-1" />
             Details

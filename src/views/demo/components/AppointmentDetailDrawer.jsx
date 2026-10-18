@@ -99,7 +99,7 @@ const AppointmentDetailDrawer = ({
         <DrawerHeader className="px-6 pt-3 pb-2 text-left">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
-              <div className="h-12 w-12 shrink-0 rounded-full bg-linear-to-br from-emerald-600 to-teal-700 text-white font-semibold flex items-center justify-center text-base shadow-sm ring-2 ring-emerald-100">
+              <div className="h-12 w-12 shrink-0 rounded-full bg-linear-to-br from-brand-600 to-brand-800 text-white font-semibold flex items-center justify-center text-base shadow-sm ring-2 ring-brand-100">
                 {initials}
               </div>
               <div className="min-w-0">
@@ -134,9 +134,9 @@ const AppointmentDetailDrawer = ({
               variant="outline"
               size="sm"
               onClick={handleEdit}
-              className="h-10 text-xs font-medium border-slate-200 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl"
+              className="h-10 text-xs font-medium border-slate-200 hover:border-brand-500 hover:text-brand-700 hover:bg-brand-50 rounded-xl"
             >
-              <Edit className="h-3.5 w-3.5 mr-1.5 text-emerald-600" />
+              <Edit className="h-3.5 w-3.5 mr-1.5 text-brand-600" />
               Edit Details
             </Button>
             <Button
@@ -167,7 +167,7 @@ const AppointmentDetailDrawer = ({
                   className={cn(
                     "h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold ring-4 ring-white shadow-xs transition-colors",
                     isSubmitted
-                      ? "bg-emerald-600 text-white"
+                      ? "bg-brand-600 text-white"
                       : "bg-slate-200 text-slate-500"
                   )}
                 >
@@ -201,7 +201,7 @@ const AppointmentDetailDrawer = ({
                   className={cn(
                     "h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold ring-4 ring-white shadow-xs transition-colors",
                     isApproved
-                      ? "bg-emerald-600 text-white"
+                      ? "bg-brand-600 text-white"
                       : isRejected
                       ? "bg-rose-600 text-white"
                       : "bg-slate-200 text-slate-500"
@@ -304,7 +304,7 @@ const AppointmentDetailDrawer = ({
           <Button
             type="button"
             onClick={handleEdit}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl h-11 shadow-sm"
+            className="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-xl h-11 shadow-sm"
           >
             <Edit className="h-4 w-4 mr-2" />
             Edit Record

@@ -17,7 +17,7 @@ const MobileOrderCard = ({
   return (
     <div
       onClick={() => onClick && onClick(row)}
-      className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs hover:border-emerald-300 transition-all active:scale-[0.99] cursor-pointer space-y-3"
+      className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs hover:border-brand-300 transition-all active:scale-[0.99] cursor-pointer space-y-3"
     >
       <div className="flex items-start justify-between gap-2">
         <div>
@@ -48,7 +48,7 @@ const MobileOrderCard = ({
           <span className="font-semibold text-slate-800">
             {row.user?.name || row.user?.username || `User #${row.user_id}`}
           </span>
-          <span className="font-bold text-emerald-700">
+          <span className="font-bold text-brand-700">
             {formatPrice(row.total_amount)}
           </span>
         </div>

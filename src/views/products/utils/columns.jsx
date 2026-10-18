@@ -24,7 +24,7 @@ export const productColumns = [
                 }}
               />
             ) : (
-              <Layers className="h-5 w-5 text-emerald-600" />
+              <Layers className="h-5 w-5 text-brand-600" />
             )}
           </div>
           <div className="flex flex-col min-w-0">
@@ -45,7 +45,7 @@ export const productColumns = [
     cell: ({ row }) => {
       const catName = row.category?.name || "Uncategorized";
       return (
-        <span className="inline-flex items-center rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700 border border-emerald-200/60">
+        <span className="inline-flex items-center rounded-lg bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700 border border-brand-200/60">
           {catName}
         </span>
       );
@@ -66,7 +66,7 @@ export const productColumns = [
             {pkgs.length} {pkgs.length === 1 ? "Tier" : "Tiers"}
           </span>
           {lowestPrice !== null && (
-            <span className="text-[11px] text-emerald-600 font-medium">
+            <span className="text-[11px] text-brand-600 font-medium">
               from {formatPrice(lowestPrice)}
             </span>
           )}
@@ -133,7 +133,7 @@ export const productColumns = [
           <Button
             variant="ghost"
             size="sm"
-            className="text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 h-8 w-8 p-0 rounded-lg"
+            className="text-brand-700 hover:text-brand-800 hover:bg-brand-50 h-8 w-8 p-0 rounded-lg"
             onClick={() => logics.handleEdit(row)}
             title="Edit Product Details"
           >

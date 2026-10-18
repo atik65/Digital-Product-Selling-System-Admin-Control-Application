@@ -123,7 +123,7 @@ const Settings = () => {
   if (isLoading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-brand-600" />
       </div>
     );
   }
@@ -141,7 +141,7 @@ const Settings = () => {
           </p>
         </div>
 
-        <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center shrink-0">
+        <div className="h-10 w-10 rounded-xl bg-brand-50 border border-brand-200 text-brand-600 flex items-center justify-center shrink-0">
           <Globe className="h-5 w-5" />
         </div>
       </div>
@@ -151,7 +151,7 @@ const Settings = () => {
           {/* Brand Identity Card */}
           <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs space-y-5">
             <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2 pb-3 border-b border-slate-100">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              <ShieldCheck className="h-4 w-4 text-brand-600" />
               Brand Identity & Logos
             </h3>
 
@@ -257,7 +257,7 @@ const Settings = () => {
           {/* Social Channels & Customer Support Hotline */}
           <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs space-y-5">
             <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2 pb-3 border-b border-slate-100">
-              <Send className="h-4 w-4 text-emerald-600" />
+              <Send className="h-4 w-4 text-brand-600" />
               Community & Support Channels
             </h3>
 
@@ -270,7 +270,7 @@ const Settings = () => {
                 <input
                   {...form.register("telegram_channel_url")}
                   placeholder="e.g., https://t.me/subflixbd"
-                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
 
@@ -282,7 +282,7 @@ const Settings = () => {
                 <input
                   {...form.register("telegram_support_url")}
                   placeholder="e.g., https://t.me/subflixsupport"
-                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
 
@@ -294,7 +294,7 @@ const Settings = () => {
                 <input
                   {...form.register("youtube_channel_url")}
                   placeholder="e.g., https://youtube.com/@subflixbd"
-                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
 
@@ -306,19 +306,19 @@ const Settings = () => {
                 <input
                   {...form.register("facebook_url")}
                   placeholder="e.g., https://facebook.com/subflixbd"
-                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-                  <Phone className="h-3.5 w-3.5 text-emerald-600" />
+                  <Phone className="h-3.5 w-3.5 text-brand-600" />
                   Hotline Support Phone
                 </label>
                 <input
                   {...form.register("support_phone")}
                   placeholder="e.g., +8801812345678"
-                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
 
@@ -330,7 +330,7 @@ const Settings = () => {
                 <input
                   {...form.register("support_email")}
                   placeholder="e.g., support@subflixbd.com"
-                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
             </div>
@@ -340,7 +340,7 @@ const Settings = () => {
             <Button
               type="submit"
               disabled={isPending || isUploadingLogo || isUploadingFavicon}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl h-11 px-8 text-xs font-semibold"
+              className="bg-brand-600 hover:bg-brand-700 text-white rounded-xl h-11 px-8 text-xs font-semibold"
             >
               {isPending ? (
                 <>

@@ -219,7 +219,7 @@ export const FieldFileInputBase64 = ({
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="px-4 py-2 space-y-2 bg-[#F0FDF4]"
+                      className="px-4 py-2 space-y-2 bg-brand-50"
                     >
                       {previews.map((preview, index) => (
                         <motion.div
@@ -502,7 +502,7 @@ export const FieldFileInput = ({
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="px-4 py-2 space-y-2 bg-[#F0FDF4]"
+                      className="px-4 py-2 space-y-2 bg-brand-50"
                     >
                       {previews.map((preview, index) => (
                         <motion.div

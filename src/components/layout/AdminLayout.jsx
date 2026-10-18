@@ -42,7 +42,7 @@ const AdminLayout = ({ children }) => {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="sticky top-0 bg-[#0f6b47] text-white z-50 border-b border-[#0b5336] flex h-16 shrink-0 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-16">
+        <header className="sticky top-0 bg-shell text-white z-50 border-b border-shell-border flex h-16 shrink-0 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-16">
           <LayoutHeader />
         </header>
 

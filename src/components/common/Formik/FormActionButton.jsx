@@ -113,17 +113,17 @@ const FormActionButton = ({
       type={type}
       disabled={!isDirty || isSubmitting}
       className={cn(
-        "relative overflow-hidden w-full py-3 px-6 bg-linear-to-r from-[#006A4E] to-[#009E60] text-white rounded-[10px] text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center hover:from-[#005A3C] hover:to-[#007A4D] transition-alljustify-center gap-2 group",
+        "relative overflow-hidden w-full py-3 px-6 bg-linear-to-r from-brand-600 to-brand-500 text-white rounded-[10px] text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center hover:from-brand-700 hover:to-brand-600 transition-alljustify-center gap-2 group",
         !isDirty || isSubmitting
           ? "opacity-50 cursor-not-allowed"
-          : "hover:bg-[#005a42] hover:shadow-xl cursor-pointer",
+          : "hover:bg-brand-700 hover:shadow-xl cursor-pointer",
         className
       )}
       // className={cn(
-      //   "relative overflow-hidden w-full py-3 px-6 bg-[#006A4E] text-white rounded-xl text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group",
+      //   "relative overflow-hidden w-full py-3 px-6 bg-brand-600 text-white rounded-xl text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group",
       //   !isDirty || isSubmitting
       //     ? "opacity-50 cursor-not-allowed"
-      //     : "hover:bg-[#005a42] hover:shadow-xl cursor-pointer",
+      //     : "hover:bg-brand-700 hover:shadow-xl cursor-pointer",
       //   className
       // )}
       {...props}
@@ -154,7 +154,7 @@ export const FormBackButton = ({ className, ...props }) => {
     <button
       {...props}
       className={cn(
-        "relative overflow-hidden w-full py-3 px-6  bg-linear-to-l from-[#F3F4F6] to-[#F3F4F6] text-[#364153] rounded-[10px] text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group hover:bg-[#005a42] hover:shadow-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border  ",
+        "relative overflow-hidden w-full py-3 px-6  bg-linear-to-l from-[#F3F4F6] to-[#F3F4F6] text-[#364153] rounded-[10px] text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group hover:bg-brand-700 hover:shadow-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border  ",
         className
       )}
     >

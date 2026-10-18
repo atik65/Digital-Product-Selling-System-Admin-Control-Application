@@ -112,16 +112,16 @@ const UserTopUpsDrawer = ({ open, onClose, user, onAdjustBalance, onAction }) =>
   const renderBodyContent = () => (
     <div className="space-y-4">
       {/* Wallet Balance Banner */}
-      <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-2xl p-4 flex items-center justify-between">
+      <div className="bg-brand-50/80 border border-brand-200/80 rounded-2xl p-4 flex items-center justify-between">
         <div>
-          <span className="text-[11px] text-emerald-700 font-semibold block">
+          <span className="text-[11px] text-brand-700 font-semibold block">
             Available Wallet Credits
           </span>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-2xl font-extrabold text-emerald-800">
+            <span className="text-2xl font-extrabold text-brand-800">
               {formatPrice(currentBalance)}
             </span>
-            <span className="text-xs font-mono font-bold text-emerald-600">
+            <span className="text-xs font-mono font-bold text-brand-600">
               {currency}
             </span>
           </div>
@@ -129,7 +129,7 @@ const UserTopUpsDrawer = ({ open, onClose, user, onAdjustBalance, onAction }) =>
         {onAdjustBalance && (
           <Button
             size="sm"
-            className="bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold h-9 shadow-xs"
+            className="bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-semibold h-9 shadow-xs"
             onClick={() => {
               onClose();
               onAdjustBalance(userData);
@@ -234,7 +234,7 @@ const UserTopUpsDrawer = ({ open, onClose, user, onAdjustBalance, onAction }) =>
 
                   <div className="sm:col-span-2 pt-2 border-t border-slate-200/60 flex items-center justify-between">
                     <span className="text-slate-500 font-medium">Requested Credit:</span>
-                    <span className="text-base font-extrabold text-emerald-700">
+                    <span className="text-base font-extrabold text-brand-700">
                       {formatPrice(topup.amount)}
                     </span>
                   </div>

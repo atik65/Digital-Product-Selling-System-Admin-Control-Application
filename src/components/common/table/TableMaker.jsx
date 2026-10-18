@@ -78,7 +78,7 @@ const DefaultMobileCard = ({ row, columns, tableInfo, logics, enableSelect }) =>
           <span className="text-xs font-semibold uppercase text-slate-500">Select</span>
           <input
             type="checkbox"
-            className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+            className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
             checked={tableInfo?.selectedRows?.includes(row?.id)}
             onChange={() => tableInfo?.handleRowSelect(row?.id)}
           />

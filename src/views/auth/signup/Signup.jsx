@@ -93,7 +93,7 @@ export default function Signup() {
             <span>Already have access?</span>
             <Link
               to="/login"
-              className="font-medium text-emerald-700 hover:underline dark:text-emerald-200"
+              className="font-medium text-brand-700 hover:underline dark:text-brand-200"
             >
               Sign in
             </Link>

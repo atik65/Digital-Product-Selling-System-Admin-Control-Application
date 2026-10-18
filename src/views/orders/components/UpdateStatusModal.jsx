@@ -123,7 +123,7 @@ const UpdateStatusModal = ({ open, onClose, order }) => {
           <Button
             onClick={handleSubmit}
             disabled={isPending || selectedStatus === order.status}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-10 font-semibold"
+            className="flex-1 bg-brand-600 hover:bg-brand-700 text-white text-xs h-10 font-semibold"
           >
             {isPending ? (
               <>

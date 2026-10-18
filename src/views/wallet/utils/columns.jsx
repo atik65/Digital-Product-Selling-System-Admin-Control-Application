@@ -59,7 +59,7 @@ export const topupColumns = [
 
       return (
         <div className="flex items-center gap-2.5 min-w-[150px]">
-          <div className="h-8 w-8 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs flex items-center justify-center overflow-hidden shrink-0">
+          <div className="h-8 w-8 rounded-full bg-brand-100 border border-brand-200 text-brand-800 font-bold text-xs flex items-center justify-center overflow-hidden shrink-0">
             {avatar ? (
               <img
                 src={avatar}
@@ -121,7 +121,7 @@ export const topupColumns = [
                 }}
               />
             ) : (
-              <CreditCard className="h-4 w-4 text-emerald-600" />
+              <CreditCard className="h-4 w-4 text-brand-600" />
             )}
           </div>
           <div className="flex flex-col min-w-0">
@@ -154,7 +154,7 @@ export const topupColumns = [
     header: "AMOUNT",
     accessorKey: "amount",
     cell: ({ row }) => (
-      <span className="font-bold text-xs text-emerald-700">
+      <span className="font-bold text-xs text-brand-700">
         {formatPrice(row.amount)}
       </span>
     ),

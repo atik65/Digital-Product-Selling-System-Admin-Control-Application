@@ -208,7 +208,7 @@ const AddEdit = ({ open, onClose, editData = null }) => {
                 <Button
                   type="submit"
                   disabled={isPending || isUploading}
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="flex-1 bg-brand-600 hover:bg-brand-700 text-white"
                 >
                   {isPending ? (
                     <>

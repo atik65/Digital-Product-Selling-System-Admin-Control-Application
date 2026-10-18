@@ -128,7 +128,7 @@ const OrderDetailDrawer = ({
       {/* Customer Information */}
       <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 space-y-2 text-xs">
         <div className="flex items-center gap-2 text-slate-600 font-semibold border-b border-slate-200/60 pb-2">
-          <User className="h-4 w-4 text-emerald-600" />
+          <User className="h-4 w-4 text-brand-600" />
           <span>Customer Profile</span>
         </div>
         <div className="grid grid-cols-2 gap-2 pt-1 text-slate-700">
@@ -158,7 +158,7 @@ const OrderDetailDrawer = ({
       {/* Order Items & Dynamic Customer Input Values */}
       <div className="space-y-2">
         <span className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-          <ShoppingBag className="h-4 w-4 text-emerald-600" />
+          <ShoppingBag className="h-4 w-4 text-brand-600" />
           Order Items & Dynamic Inputs ({items.length})
         </span>
 
@@ -173,7 +173,7 @@ const OrderDetailDrawer = ({
                   <h4 className="font-semibold text-xs text-slate-900">
                     {item.product_name}
                   </h4>
-                  <span className="text-[11px] text-emerald-600 font-medium">
+                  <span className="text-[11px] text-brand-600 font-medium">
                     Tier: {item.package_name} × {item.quantity}
                   </span>
                 </div>
@@ -239,7 +239,7 @@ const OrderDetailDrawer = ({
         )}
         <div className="flex justify-between font-bold text-sm text-slate-900 pt-2 border-t border-slate-200">
           <span>Total Amount:</span>
-          <span className="text-emerald-700">{formatPrice(order.total_amount)}</span>
+          <span className="text-brand-700">{formatPrice(order.total_amount)}</span>
         </div>
       </div>
 
@@ -259,7 +259,7 @@ const OrderDetailDrawer = ({
   const renderFooterButtons = (CloseComp) => (
     <>
       <Button
-        className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl h-11 text-xs font-semibold"
+        className="flex-1 bg-brand-600 hover:bg-brand-700 text-white rounded-xl h-11 text-xs font-semibold"
         onClick={() => {
           onClose();
           onUpdateStatus(order);

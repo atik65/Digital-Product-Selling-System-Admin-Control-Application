@@ -10,7 +10,7 @@ export const couponColumns = [
     accessorKey: "code",
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center shrink-0">
+        <div className="h-8 w-8 rounded-lg bg-brand-50 border border-brand-200 text-brand-600 flex items-center justify-center shrink-0">
           <Tag className="h-4 w-4" />
         </div>
         <code className="font-mono font-bold text-xs bg-slate-100 text-slate-800 px-2 py-1 rounded-md">
@@ -26,7 +26,7 @@ export const couponColumns = [
       const isPercent = row.type === "PERCENTAGE";
       return (
         <div className="flex flex-col">
-          <span className="font-bold text-xs text-emerald-700">
+          <span className="font-bold text-xs text-brand-700">
             {isPercent ? `${row.value}% OFF` : `${formatPrice(row.value)} OFF`}
           </span>
           {row.max_discount && isPercent && (
@@ -106,7 +106,7 @@ export const couponColumns = [
         <Button
           variant="ghost"
           size="sm"
-          className="text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 h-8 w-8 p-0 rounded-lg"
+          className="text-brand-700 hover:text-brand-800 hover:bg-brand-50 h-8 w-8 p-0 rounded-lg"
           onClick={() => logics.handleEdit(row)}
           title="Edit Coupon"
         >

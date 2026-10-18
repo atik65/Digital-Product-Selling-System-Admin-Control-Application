@@ -82,7 +82,7 @@ const CouponsList = () => {
                   </p>
                 </div>
                 <Button
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs shrink-0 rounded-xl h-10 px-4 text-xs sm:text-sm font-medium"
+                  className="bg-brand-600 hover:bg-brand-700 text-white shadow-xs shrink-0 rounded-xl h-10 px-4 text-xs sm:text-sm font-medium"
                   onClick={handleAdd}
                 >
                   <Plus className="mr-1.5 h-4 w-4" />
@@ -109,7 +109,7 @@ const CouponsList = () => {
                         className={cn(
                           "px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0",
                           isActive
-                            ? "bg-emerald-700 text-white shadow-xs font-semibold"
+                            ? "bg-brand-700 text-white shadow-xs font-semibold"
                             : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800"
                         )}
                       >
@@ -134,7 +134,7 @@ const CouponsList = () => {
               </p>
               <Button
                 onClick={handleAdd}
-                className="mt-4 text-xs rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="mt-4 text-xs rounded-xl bg-brand-600 hover:bg-brand-700 text-white"
                 size="sm"
               >
                 <Plus className="mr-1.5 h-3.5 w-3.5" />

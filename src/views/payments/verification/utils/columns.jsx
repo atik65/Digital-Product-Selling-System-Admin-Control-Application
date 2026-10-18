@@ -75,7 +75,7 @@ export const paymentColumns = [
     header: "AMOUNT",
     accessorKey: "amount",
     cell: ({ row }) => (
-      <span className="font-bold text-xs text-emerald-700">
+      <span className="font-bold text-xs text-brand-700">
         {formatPrice(row.amount)}
       </span>
     ),

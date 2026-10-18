@@ -74,7 +74,7 @@ const FieldSelect = ({
                 {/* Gradient glow effect → Brand green tint */}
                 <div
                   className={cn(
-                    "absolute -inset-0.5 bg-[#006A4E]/20 rounded-[10px] blur-sm opacity-0 group-hover:opacity-20 transition-opacity duration-300",
+                    "absolute -inset-0.5 bg-brand-600/20 rounded-[10px] blur-sm opacity-0 group-hover:opacity-20 transition-opacity duration-300",
                     isFocused && "opacity-30"
                   )}
                 />
@@ -92,7 +92,7 @@ const FieldSelect = ({
                   <SelectTrigger
                     className={cn(
                       "relative h-12 px-4   border border-[#D1D5DC] rounded-[10px] text-sm font-medium text-gray-800 transition-all duration-300",
-                      "focus:border-[#D1D5DC] focus:border focus:ring-2 focus:ring-[#006A4E]/20 ",
+                      "focus:border-[#D1D5DC] focus:border focus:ring-2 focus:ring-brand-600/20 ",
                       "hover:border",
                       icon && "pl-12",
                       disabled && "opacity-50 cursor-not-allowed bg-gray-50",
@@ -132,8 +132,8 @@ const FieldSelect = ({
                           value={option.value}
                           className={cn(
                             "text-sm font-medium text-gray-700 cursor-pointer transition-colors duration-200 relative",
-                            "focus:bg-[#006A4E]/10 focus:text-[#006A4E]",
-                            "hover:bg-[#006A4E]/5"
+                            "focus:bg-brand-600/10 focus:text-brand-700",
+                            "hover:bg-brand-600/5"
                           )}
                         >
                           {option.label}

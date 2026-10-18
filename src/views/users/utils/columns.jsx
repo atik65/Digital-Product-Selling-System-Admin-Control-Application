@@ -16,7 +16,7 @@ export const userColumns = [
 
       return (
         <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs flex items-center justify-center overflow-hidden shrink-0">
+          <div className="h-9 w-9 rounded-full bg-brand-100 border border-brand-200 text-brand-800 font-bold text-xs flex items-center justify-center overflow-hidden shrink-0">
             {avatar ? (
               <img
                 src={avatar}
@@ -116,7 +116,7 @@ export const userColumns = [
         <Button
           variant="ghost"
           size="sm"
-          className="text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 h-8 px-2 rounded-lg gap-1 text-xs font-medium"
+          className="text-brand-700 hover:text-brand-800 hover:bg-brand-50 h-8 px-2 rounded-lg gap-1 text-xs font-medium"
           onClick={() => logics.handleOpenDrawer(row)}
           title="View Profile Details"
         >

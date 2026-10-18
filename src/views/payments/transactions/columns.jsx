@@ -29,7 +29,7 @@ export const transactionColumns = [
     accessorKey: "payment_method_id",
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded-lg bg-slate-100 flex items-center justify-center text-emerald-600 shrink-0">
+        <div className="h-8 w-8 rounded-lg bg-slate-100 flex items-center justify-center text-brand-600 shrink-0">
           <CreditCard className="h-4 w-4" />
         </div>
         <div className="flex flex-col text-xs">
@@ -73,7 +73,7 @@ export const transactionColumns = [
     header: "AMOUNT",
     accessorKey: "amount",
     cell: ({ row }) => (
-      <span className="font-bold text-xs text-emerald-700">
+      <span className="font-bold text-xs text-brand-700">
         {formatPrice(row.amount)}
       </span>
     ),

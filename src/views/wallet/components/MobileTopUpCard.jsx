@@ -78,7 +78,7 @@ const MobileTopUpCard = ({ row, onAction }) => {
         <div className="flex items-center justify-between gap-2">
           <span className="text-slate-500 shrink-0">Customer:</span>
           <div className="flex items-center gap-2 min-w-0 text-right">
-            <div className="h-6 w-6 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-[10px] flex items-center justify-center overflow-hidden shrink-0">
+            <div className="h-6 w-6 rounded-full bg-brand-100 border border-brand-200 text-brand-800 font-bold text-[10px] flex items-center justify-center overflow-hidden shrink-0">
               {avatar ? (
                 <img
                   src={avatar}
@@ -120,7 +120,7 @@ const MobileTopUpCard = ({ row, onAction }) => {
                   }}
                 />
               ) : (
-                <CreditCard className="h-3 w-3 text-emerald-600" />
+                <CreditCard className="h-3 w-3 text-brand-600" />
               )}
             </div>
             <span className="font-medium text-slate-800 truncate">
@@ -145,7 +145,7 @@ const MobileTopUpCard = ({ row, onAction }) => {
         {/* Amount */}
         <div className="flex items-center justify-between pt-1.5 border-t border-slate-200/80 font-bold">
           <span className="text-slate-700">Amount:</span>
-          <span className="text-emerald-700 text-sm font-extrabold">{formatPrice(row.amount)}</span>
+          <span className="text-brand-700 text-sm font-extrabold">{formatPrice(row.amount)}</span>
         </div>
       </div>
 

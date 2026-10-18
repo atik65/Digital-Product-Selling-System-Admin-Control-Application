@@ -311,7 +311,7 @@ const ManagePackagesModal = ({ open, onClose, product }) => {
                       </div>
 
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="font-bold text-sm text-emerald-600">
+                        <span className="font-bold text-sm text-brand-600">
                           {formatPrice(pkg.price)}
                         </span>
                         {hasDiscount && (

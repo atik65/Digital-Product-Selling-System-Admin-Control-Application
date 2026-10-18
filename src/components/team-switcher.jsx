@@ -114,7 +114,7 @@ export function AppSidebarHeader({ intro }) {
           />
         ) : null}
         <span
-          className="logo-fallback text-[#0f6b47] font-bold text-sm items-center justify-center"
+          className="logo-fallback text-brand-700 font-bold text-sm items-center justify-center"
           style={{ display: logoUrl ? "none" : "flex" }}
         >
           {title?.slice(0, 2)?.toUpperCase() || "DP"}
@@ -124,7 +124,7 @@ export function AppSidebarHeader({ intro }) {
         <span className="truncate font-bold text-base text-white">
           {title}
         </span>
-        <span className="truncate text-xs text-emerald-100/80">
+        <span className="truncate text-xs text-brand-100/80">
           {subtitle}
         </span>
       </div>

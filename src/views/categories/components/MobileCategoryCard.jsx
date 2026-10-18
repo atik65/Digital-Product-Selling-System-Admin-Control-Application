@@ -11,7 +11,7 @@ const MobileCategoryCard = ({ row, onClick, onEdit }) => {
   return (
     <div
       onClick={() => onClick && onClick(row)}
-      className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs hover:border-emerald-300 transition-all active:scale-[0.99] cursor-pointer space-y-3"
+      className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs hover:border-brand-300 transition-all active:scale-[0.99] cursor-pointer space-y-3"
     >
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
@@ -26,7 +26,7 @@ const MobileCategoryCard = ({ row, onClick, onEdit }) => {
                 }}
               />
             ) : (
-              <Folder className="h-5 w-5 text-emerald-600" />
+              <Folder className="h-5 w-5 text-brand-600" />
             )}
           </div>
           <div className="min-w-0">
@@ -75,7 +75,7 @@ const MobileCategoryCard = ({ row, onClick, onEdit }) => {
           <Button
             variant="ghost"
             size="sm"
-            className="h-7 w-7 p-0 text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg"
+            className="h-7 w-7 p-0 text-slate-600 hover:text-brand-700 hover:bg-brand-50 rounded-lg"
             onClick={() => onEdit(row)}
           >
             <Edit className="h-3.5 w-3.5" />

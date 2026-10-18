@@ -19,12 +19,12 @@ const MobileUserCard = ({
   return (
     <div
       onClick={() => onClick && onClick(row)}
-      className="group bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs hover:border-emerald-300 transition-all active:scale-[0.99] cursor-pointer space-y-3"
+      className="group bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs hover:border-brand-300 transition-all active:scale-[0.99] cursor-pointer space-y-3"
     >
       {/* Top: Avatar, Name, Email, Role Pill & Chevron */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="h-10 w-10 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs flex items-center justify-center overflow-hidden shrink-0">
+          <div className="h-10 w-10 rounded-full bg-brand-100 border border-brand-200 text-brand-800 font-bold text-xs flex items-center justify-center overflow-hidden shrink-0">
             {avatar ? (
               <img
                 src={avatar}
@@ -85,7 +85,7 @@ const MobileUserCard = ({
           </button>
 
           {row.wallet_balance !== undefined && row.wallet_balance !== null && (
-            <span className="text-[11px] font-mono font-semibold text-emerald-700 bg-emerald-50/80 px-2 py-0.5 rounded-full border border-emerald-200/60">
+            <span className="text-[11px] font-mono font-semibold text-brand-700 bg-brand-50/80 px-2 py-0.5 rounded-full border border-brand-200/60">
               {formatPrice(row.wallet_balance)}
             </span>
           )}

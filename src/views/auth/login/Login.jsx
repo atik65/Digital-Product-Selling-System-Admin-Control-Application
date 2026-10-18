@@ -122,7 +122,7 @@ export default function Login() {
         <div className="flex flex-col gap-3">
           <Button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-700 h-11 text-sm font-medium rounded-xl shadow-xs"
+            className="w-full bg-brand-600 hover:bg-brand-700 h-11 text-sm font-medium rounded-xl shadow-xs"
             disabled={!isValid || isSubmitting}
           >
             {isSubmitting ? (
@@ -146,9 +146,9 @@ export default function Login() {
                 variant="outline"
                 size="sm"
                 onClick={handleFillAdmin}
-                className="text-xs border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-lg justify-cener"
+                className="text-xs border-brand-200 text-brand-700 hover:bg-brand-50 rounded-lg justify-cener"
               >
-                <ShieldCheck className="h-3.5 w-3.5 mr-1.5 shrink-0 text-emerald-600" />
+                <ShieldCheck className="h-3.5 w-3.5 mr-1.5 shrink-0 text-brand-600" />
                 <span>Auto Fill: Login as Admin</span>
               </Button>
               {/* <Button
