@@ -5,7 +5,7 @@ import { formatDate, formatPrice, getStatusBadge } from "@/lib/formatters";
 import { useState } from "react";
 import { toast } from "sonner";
 
-const CopyButton = ({ text }) => {
+export const CopyButton = ({ text }) => {
   const [copied, setCopied] = useState(false);
   const handleCopy = () => {
     navigator.clipboard.writeText(text);

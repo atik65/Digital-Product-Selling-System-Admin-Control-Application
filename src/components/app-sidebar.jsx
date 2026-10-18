@@ -8,6 +8,7 @@ import {
   ShoppingBag,
   CheckCircle2,
   CreditCard,
+  History,
   MessageSquare,
   Coins,
   Users,
@@ -76,6 +77,11 @@ const navConfig = {
       title: "Payment Gateways",
       url: "/payment-methods",
       icon: CreditCard,
+    },
+    {
+      title: "Transaction History",
+      url: "/payment-transactions",
+      icon: History,
     },
     {
       title: "SMS Device Logs",

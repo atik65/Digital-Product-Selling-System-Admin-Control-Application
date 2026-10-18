@@ -22,6 +22,7 @@ import OrdersList from "@/views/orders/OrdersList";
 import PaymentVerificationList from "@/views/payments/verification/PaymentVerificationList";
 import PaymentMethodsList from "@/views/payments/methods/PaymentMethodsList";
 import SmsLogsList from "@/views/payments/sms-logs/SmsLogsList";
+import TransactionsList from "@/views/payments/transactions/TransactionsList";
 import TopUpsList from "@/views/wallet/TopUpsList";
 
 // Users & Growth
@@ -56,6 +57,7 @@ export const router = createBrowserRouter([
       // Payments & Finances
       { path: "/payments", element: <PaymentVerificationList /> },
       { path: "/payment-methods", element: <PaymentMethodsList /> },
+      { path: "/payment-transactions", element: <TransactionsList /> },
       { path: "/sms-logs", element: <SmsLogsList /> },
       { path: "/wallet-topups", element: <TopUpsList /> },
 

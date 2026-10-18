@@ -21,6 +21,8 @@ export const ROUTE_TITLES = {
   "/payments": "Payment Verification",
   "payment-methods": "Payment Gateways",
   "/payment-methods": "Payment Gateways",
+  "payment-transactions": "Transaction History",
+  "/payment-transactions": "Transaction History",
   "sms-logs": "SMS Device Logs",
   "/sms-logs": "SMS Device Logs",
   "wallet-topups": "Wallet Top-Ups",

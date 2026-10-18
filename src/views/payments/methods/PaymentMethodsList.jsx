@@ -29,6 +29,8 @@ const PaymentMethodsList = () => {
   const { tableInfo } = useTable({
     api: paymentApi.listMethods,
     apiCacheKey: paymentApi.methodsCacheKey,
+    // Counters change whenever a payment is verified (also automatically via SMS)
+    staleTime: 0,
   });
 
   return (
@@ -57,7 +59,7 @@ const PaymentMethodsList = () => {
                   Payment Methods & Gateways
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                  Manage recipient mobile financial accounts (bKash, Nagad, Rocket) and customer instructions
+                  Manage recipient mobile financial accounts (bKash, Nagad, Rocket), customer instructions and transaction limits
                 </p>
               </div>
               <Button

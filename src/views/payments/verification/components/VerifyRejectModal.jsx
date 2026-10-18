@@ -13,7 +13,12 @@ import paymentApi from "../../api";
 import { Loader2, CheckCircle, XCircle } from "lucide-react";
 import { formatPrice } from "@/lib/formatters";
 
-const VerifyRejectModal = ({ open, onClose, payment, actionType = "VERIFY" }) => {
+const VerifyRejectModal = ({
+  open,
+  onClose,
+  payment,
+  actionType = "VERIFY",
+}) => {
   const [adminNote, setAdminNote] = useState("");
   const { mutateAsync, isPending } = useRequest();
   const isVerify = actionType === "VERIFY";
@@ -32,7 +37,7 @@ const VerifyRejectModal = ({ open, onClose, payment, actionType = "VERIFY" }) =>
 
       await mutateAsync({
         id: payment.id,
-        data: { admin_notes: adminNote },
+        data: { admin_note: adminNote },
         api: apiEndpoint,
         cacheKey: paymentApi.cacheKey,
         handleDone: () => {
@@ -66,7 +71,9 @@ const VerifyRejectModal = ({ open, onClose, payment, actionType = "VERIFY" }) =>
             </div>
             <div>
               <DialogTitle className="text-base font-bold text-slate-900">
-                {isVerify ? "Approve & Verify Payment" : "Reject Payment Request"}
+                {isVerify
+                  ? "Approve & Verify Payment"
+                  : "Reject Payment Request"}
               </DialogTitle>
               <DialogDescription className="text-xs text-slate-500">
                 {isVerify

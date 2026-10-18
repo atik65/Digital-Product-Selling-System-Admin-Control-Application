@@ -1,5 +1,6 @@
 const adminPaymentsEndpoint = "/api/v1/admin/payments";
 const paymentMethodsEndpoint = "/api/v1/admin/payment-methods";
+const paymentTransactionsEndpoint = "/api/v1/admin/payment-transactions";
 
 const paymentApi = {
   // Verification Queue
@@ -25,6 +26,14 @@ const paymentApi = {
   listSmsLogs: {
     endpoint: adminPaymentsEndpoint,
     path: "/sms-logs",
+    method: "get",
+  },
+
+  // Successful Transaction History
+  transactionsCacheKey: "adminPaymentTransactions",
+  listTransactions: {
+    endpoint: paymentTransactionsEndpoint,
+    path: "",
     method: "get",
   },
 

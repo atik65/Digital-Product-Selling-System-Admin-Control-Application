@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Edit2, Trash2, CreditCard } from "lucide-react";
 import { getImageUrl } from "@/lib/media";
 import ActionDialogDelete from "@/components/common/ActionDialogDelete";
+import UsageMeter from "./components/UsageMeter";
 
 export const paymentMethodColumns = [
   {
@@ -47,6 +48,30 @@ export const paymentMethodColumns = [
       <code className="text-xs bg-slate-100 text-slate-800 px-2 py-1 rounded-md font-mono font-semibold">
         {row.account_number}
       </code>
+    ),
+  },
+  {
+    header: "MONTHLY TRANSACTIONS",
+    accessorKey: "monthly_transaction_count",
+    cell: ({ row }) => (
+      <UsageMeter
+        label="This month"
+        count={row.monthly_transaction_count}
+        limit={row.monthly_transaction_limit}
+        remaining={row.monthly_remaining}
+      />
+    ),
+  },
+  {
+    header: "DAILY TRANSACTIONS",
+    accessorKey: "daily_transaction_count",
+    cell: ({ row }) => (
+      <UsageMeter
+        label="Today"
+        count={row.daily_transaction_count}
+        limit={row.daily_transaction_limit}
+        remaining={row.daily_remaining}
+      />
     ),
   },
   {

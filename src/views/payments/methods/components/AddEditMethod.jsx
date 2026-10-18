@@ -18,6 +18,21 @@ import { uploadMedia, getImageUrl } from "@/lib/media";
 import * as yup from "yup";
 import { toast } from "sonner";
 
+// Empty input means "no limit" (sent to the API as null)
+const limitValidation = yup
+  .number()
+  .transform((value, original) =>
+    original === "" || original === null || original === undefined ? null : value
+  )
+  .typeError("Must be a number")
+  .integer("Must be a whole number")
+  .min(1, "Must be at least 1")
+  .nullable()
+  .optional();
+
+const toLimit = (value) =>
+  value === "" || value === null || value === undefined ? null : Number(value);
+
 const methodValidation = yup.object({
   name: yup.string().trim().required("Method name is required"),
   account_number: yup.string().trim().required("Account number is required"),
@@ -25,6 +40,8 @@ const methodValidation = yup.object({
   logo: yup.string().nullable().optional(),
   sort_order: yup.number().typeError("Must be a number").default(0),
   is_active: yup.boolean().default(true),
+  monthly_transaction_limit: limitValidation,
+  daily_transaction_limit: limitValidation,
 });
 
 const getValues = (data) => ({
@@ -34,6 +51,8 @@ const getValues = (data) => ({
   logo: data?.logo || "",
   sort_order: data?.sort_order ?? 0,
   is_active: data?.is_active ?? true,
+  monthly_transaction_limit: data?.monthly_transaction_limit ?? "",
+  daily_transaction_limit: data?.daily_transaction_limit ?? "",
 });
 
 const AddEditMethod = ({ open, onClose, editData = null }) => {
@@ -75,6 +94,8 @@ const AddEditMethod = ({ open, onClose, editData = null }) => {
         data: {
           ...data,
           sort_order: Number(data.sort_order) || 0,
+          monthly_transaction_limit: toLimit(data.monthly_transaction_limit),
+          daily_transaction_limit: toLimit(data.daily_transaction_limit),
         },
         api: isEditMode
           ? paymentApi.updateMethod(editData.id)
@@ -184,6 +205,33 @@ const AddEditMethod = ({ open, onClose, editData = null }) => {
                   className="w-full p-3 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                   placeholder="e.g., Send Money to this personal number and input TrxID below."
                 />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-slate-700">
+                  Transaction Limits
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <FieldInput
+                    form={form}
+                    name="monthly_transaction_limit"
+                    label="Monthly"
+                    inputMode="numeric"
+                    placeholder="e.g., 300"
+                  />
+                  <FieldInput
+                    form={form}
+                    name="daily_transaction_limit"
+                    label="Daily"
+                    inputMode="numeric"
+                    placeholder="e.g., 20"
+                  />
+                </div>
+                <p className="text-[11px] text-slate-400">
+                  Number of successful transactions. Leave empty for no limit.
+                  This is only a counter on the dashboard, nothing is blocked
+                  automatically. Months start on the 1st (Bangladesh time).
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-3 items-end">
