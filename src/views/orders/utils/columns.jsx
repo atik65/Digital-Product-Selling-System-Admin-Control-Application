@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Eye, Edit3, CheckCircle2, MessageSquare } from "lucide-react";
 import { formatDate, formatPrice, getStatusBadge } from "@/lib/formatters";
+import { CopyButton } from "@/views/payments/verification/utils/columns";
 
 export const orderColumns = [
   {
@@ -72,6 +73,46 @@ export const orderColumns = [
         )}
       </div>
     ),
+  },
+  {
+    header: "TRANSACTION ID",
+    accessorKey: "payments",
+    cell: ({ row }) => {
+      // Latest submission first; an order can have several (e.g. after a rejection)
+      const payments = [...(row.payments || [])].sort((a, b) => b.id - a.id);
+      if (!payments.length) {
+        return <span className="text-xs text-slate-400">-</span>;
+      }
+      const latest = payments[0];
+      const badge = getStatusBadge(latest.status);
+
+      return (
+        <div className="flex flex-col gap-0.5 min-w-0">
+          <div className="flex items-center gap-1.5 font-mono">
+            <span className="font-bold text-xs text-slate-900 select-all">
+              {latest.transaction_id}
+            </span>
+            <CopyButton text={latest.transaction_id} />
+          </div>
+          <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
+            <span className={cn("h-1.5 w-1.5 rounded-full shrink-0", badge.dot)} />
+            <span className="truncate">
+              {latest.payment_method?.name || `Method #${latest.payment_method_id}`}
+              {" • "}
+              {badge.label}
+            </span>
+          </div>
+          {payments.length > 1 && (
+            <span
+              className="text-[10px] text-slate-400"
+              title={payments.map((p) => p.transaction_id).join(", ")}
+            >
+              +{payments.length - 1} earlier attempt(s)
+            </span>
+          )}
+        </div>
+      );
+    },
   },
   {
     header: "STATUS",

@@ -65,7 +65,7 @@ const navConfig = {
   sales: [
     {
       title: "Orders Fulfillment",
-      url: "/orders",
+      url: "/orders?status_filter=PAID&page=1",
       icon: ShoppingBag,
     },
     {
@@ -143,7 +143,10 @@ export function AppSidebar({ ...props }) {
         <NavMain groupLabel="Analytics" items={navConfig.core} />
         <NavMain groupLabel="Store Catalog" items={navConfig.catalog} />
         <NavMain groupLabel="Sales & Finances" items={navConfig.sales} />
-        <NavMain groupLabel="Customers & Marketing" items={navConfig.marketing} />
+        <NavMain
+          groupLabel="Customers & Marketing"
+          items={navConfig.marketing}
+        />
         <NavMain groupLabel="System" items={navConfig.system} />
       </SidebarContent>
 

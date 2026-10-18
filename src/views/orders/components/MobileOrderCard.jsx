@@ -12,6 +12,7 @@ const MobileOrderCard = ({
   const badge = getStatusBadge(row.status);
   const items = row.items || [];
   const firstItem = items[0];
+  const latestPayment = [...(row.payments || [])].sort((a, b) => b.id - a.id)[0];
 
   return (
     <div
@@ -55,6 +56,12 @@ const MobileOrderCard = ({
           <p className="text-[11px] text-slate-500 truncate">
             {firstItem.product_name} • {firstItem.package_name}
             {items.length > 1 && ` (+${items.length - 1} more)`}
+          </p>
+        )}
+        {latestPayment && (
+          <p className="text-[11px] text-slate-500 font-mono truncate">
+            TrxID: <span className="font-semibold text-slate-700 select-all">{latestPayment.transaction_id}</span>
+            {latestPayment.payment_method?.name && ` • ${latestPayment.payment_method.name}`}
           </p>
         )}
       </div>
